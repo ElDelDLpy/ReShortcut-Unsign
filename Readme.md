@@ -2,7 +2,7 @@
 
 Atajo de iOS que quita la firma a un atajo y convierte entre `.shortcut`, JSON y plist (XML).
 
-**Versión:** 0.0.6 (en pruebas)
+**Versión:** 0.0.7 (en pruebas)
 
 ## Entradas
 
@@ -16,7 +16,7 @@ Atajo de iOS que quita la firma a un atajo y convierte entre `.shortcut`, JSON y
 
 ## Actualizaciones
 
-Al terminar, y como máximo una vez al día, consulta `version.json`. Si `build` es mayor y `url` es un enlace de iCloud o el `.shortcut` firmado de este repo en GitHub, ofrece actualizar. La fecha se guarda en `Shortcuts/ReShortcutUnsign/ultima_revision.txt`; bórralo para forzar otra revisión.
+Al terminar, y como máximo una vez al día, consulta `version.json`. Si `build` es mayor y `url` es un enlace de iCloud o el `.shortcut` firmado de este repo en GitHub, ofrece actualizar: un enlace de iCloud se abre directamente; un `.shortcut` de GitHub se descarga y se abre. La fecha se guarda en `Shortcuts/ReShortcutUnsign/ultima_revision.txt`; bórralo para forzar otra revisión.
 
 Antes de publicar en `main`, cambia la acción de texto `Canal` de `dev` a `main`.
 

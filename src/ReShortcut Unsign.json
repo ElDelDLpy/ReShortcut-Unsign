@@ -12,7 +12,7 @@
     {
       "WFWorkflowActionIdentifier": "is.workflow.actions.comment",
       "WFWorkflowActionParameters": {
-        "WFCommentActionText": "ReShortcut Unsign v0.0.6\nQuita la firma a un atajo. Entrada: enlace de iCloud, archivo .shortcut, .json o .plist (hoja de compartir o elegido al ejecutar).\nSi la entrada es un .json o .plist pregunta si generar el .shortcut sin firmar (modo a-Shell). .shortcut es el único formato que iOS importa (.wflow es de Automator/macOS).\nSalida a elegir: solo .shortcut, solo JSON, solo plist (XML) o todos.\nModo nativo (sin a-Shell): enlace de iCloud + solo .shortcut.\nModo a-Shell: todo lo demás (archivos locales firmados, JSON, plist). unsign.py y el archivo de entrada se guardan solos en ~/Documents de a-Shell en cada ejecución.\nNunca sobrescribe sin confirmar. Avisa qué modo usa.\nPara reimportar el resultado en iOS hay que firmarlo.",
+        "WFCommentActionText": "ReShortcut Unsign v0.0.7\nQuita la firma a un atajo. Entrada: enlace de iCloud, archivo .shortcut, .json o .plist (hoja de compartir o elegido al ejecutar).\nSi la entrada es un .json o .plist pregunta si generar el .shortcut sin firmar (modo a-Shell). .shortcut es el único formato que iOS importa (.wflow es de Automator/macOS).\nSalida a elegir: solo .shortcut, solo JSON, solo plist (XML) o todos.\nModo nativo (sin a-Shell): enlace de iCloud + solo .shortcut.\nModo a-Shell: todo lo demás (archivos locales firmados, JSON, plist). unsign.py y el archivo de entrada se guardan solos en ~/Documents de a-Shell en cada ejecución.\nNunca sobrescribe sin confirmar. Avisa qué modo usa.\nPara reimportar el resultado en iOS hay que firmarlo.",
         "UUID": "288E5DC1-AC20-4F28-9DE7-4CB7D7BFFC58"
       }
     },
@@ -21,7 +21,7 @@
       "WFWorkflowActionParameters": {
         "UUID": "C3D5F6C1-1688-4216-ABB8-C716AA553F4C",
         "CustomOutputName": "Versión valor",
-        "WFTextActionText": "0.0.6"
+        "WFTextActionText": "0.0.7"
       }
     },
     {
@@ -4970,14 +4970,12 @@
       }
     },
     {
-      "WFWorkflowActionIdentifier": "is.workflow.actions.text.replace",
+      "WFWorkflowActionIdentifier": "is.workflow.actions.text.match",
       "WFWorkflowActionParameters": {
-        "WFReplaceTextFind": "\\A(https://(?:raw\\.githubusercontent|github)\\.com/.+)\\Z",
-        "WFReplaceTextReplace": "shortcuts://import-workflow?url=$1",
-        "WFReplaceTextRegularExpression": true,
-        "WFReplaceTextCaseSensitive": false,
-        "UUID": "6769B4EA-3944-4BAE-81FA-2DF37C90429B",
-        "WFInput": {
+        "CustomOutputName": "Es iCloud",
+        "WFMatchTextPattern": "\\Ahttps://www\\.icloud\\.com/",
+        "WFMatchTextCaseSensitive": false,
+        "text": {
           "Value": {
             "string": "￼",
             "attachmentsByRange": {
@@ -4990,7 +4988,27 @@
           },
           "WFSerializationType": "WFTextTokenString"
         },
-        "CustomOutputName": "Enlace de importación"
+        "UUID": "956836E1-5BB5-4DEC-89DA-0EE41DD39FFC"
+      }
+    },
+    {
+      "WFWorkflowActionIdentifier": "is.workflow.actions.conditional",
+      "WFWorkflowActionParameters": {
+        "GroupingIdentifier": "D9E7F19B-FBB6-4DE4-86DD-BABF28C89F51",
+        "WFControlFlowMode": 0,
+        "WFCondition": 100,
+        "WFInput": {
+          "Type": "Variable",
+          "Variable": {
+            "Value": {
+              "OutputUUID": "956836E1-5BB5-4DEC-89DA-0EE41DD39FFC",
+              "Type": "ActionOutput",
+              "OutputName": "Es iCloud"
+            },
+            "WFSerializationType": "WFTextTokenAttachment"
+          }
+        },
+        "UUID": "DF13E519-152F-406A-AADE-4E945B2012C0"
       }
     },
     {
@@ -4998,13 +5016,64 @@
       "WFWorkflowActionParameters": {
         "WFInput": {
           "Value": {
-            "OutputUUID": "6769B4EA-3944-4BAE-81FA-2DF37C90429B",
+            "OutputUUID": "83B6C753-9AD5-454D-939B-1DDCA7369666",
             "Type": "ActionOutput",
-            "OutputName": "Enlace de importación"
+            "OutputName": "Enlace válido"
           },
           "WFSerializationType": "WFTextTokenAttachment"
         },
-        "UUID": "AD44B694-9A4F-424B-8034-E80BF764D9E0"
+        "UUID": "E41D461C-2486-4E6F-96A7-367D74C9FA16"
+      }
+    },
+    {
+      "WFWorkflowActionIdentifier": "is.workflow.actions.conditional",
+      "WFWorkflowActionParameters": {
+        "UUID": "E534A1E3-1A96-4781-B84B-C57E93331BD7",
+        "GroupingIdentifier": "D9E7F19B-FBB6-4DE4-86DD-BABF28C89F51",
+        "WFControlFlowMode": 1
+      }
+    },
+    {
+      "WFWorkflowActionIdentifier": "is.workflow.actions.downloadurl",
+      "WFWorkflowActionParameters": {
+        "CustomOutputName": "Atajo nuevo",
+        "WFURL": {
+          "Value": {
+            "string": "￼",
+            "attachmentsByRange": {
+              "{0, 1}": {
+                "OutputUUID": "83B6C753-9AD5-454D-939B-1DDCA7369666",
+                "Type": "ActionOutput",
+                "OutputName": "Enlace válido"
+              }
+            }
+          },
+          "WFSerializationType": "WFTextTokenString"
+        },
+        "WFHTTPMethod": "GET",
+        "UUID": "E84B7313-C4C0-461E-B1FD-F86BDC8520D4"
+      }
+    },
+    {
+      "WFWorkflowActionIdentifier": "is.workflow.actions.openurl",
+      "WFWorkflowActionParameters": {
+        "WFInput": {
+          "Value": {
+            "OutputUUID": "E84B7313-C4C0-461E-B1FD-F86BDC8520D4",
+            "Type": "ActionOutput",
+            "OutputName": "Atajo nuevo"
+          },
+          "WFSerializationType": "WFTextTokenAttachment"
+        },
+        "UUID": "8F4DFC7C-2EE8-4243-80B0-7BA6585E1143"
+      }
+    },
+    {
+      "WFWorkflowActionIdentifier": "is.workflow.actions.conditional",
+      "WFWorkflowActionParameters": {
+        "GroupingIdentifier": "D9E7F19B-FBB6-4DE4-86DD-BABF28C89F51",
+        "WFControlFlowMode": 2,
+        "UUID": "C7E4DA00-0937-4E35-A007-B76AEB728A72"
       }
     },
     {
