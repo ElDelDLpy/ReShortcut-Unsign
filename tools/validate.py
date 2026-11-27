@@ -3,7 +3,7 @@
 
 Uso: python3 tools/validate.py
 """
-import base64, json
+import base64, json, re
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -43,6 +43,31 @@ def main():
         errors.append("hay bloques sin cerrar")
     if script != (ROOT / "src" / "unsign.py").read_bytes():
         errors.append("el script incrustado no coincide con src/unsign.py (ejecuta build.py)")
+    es = json.loads((ROOT / "lang" / "es.json").read_text(encoding="utf-8"))
+    embedded = [a["WFWorkflowActionParameters"]["WFTextActionText"] for a in wf["WFWorkflowActions"]
+                if a["WFWorkflowActionParameters"].get("CustomOutputName") == "Idioma base"]
+    if [json.loads(t) for t in embedded] != [es]:
+        errors.append("el español incrustado no coincide con lang/es.json (ejecuta build.py)")
+    for path in sorted((ROOT / "lang").glob("*.json")):
+        pack = json.loads(path.read_text(encoding="utf-8"))
+        if set(pack) != set(es):
+            errors.append(f"{path.name}: claves distintas a es.json")
+        errors += [f"{path.name}: la clave {k} lleva punto" for k in pack if "." in k]
+    ver = json.loads((ROOT / "version.json").read_text(encoding="utf-8"))["version"]
+    readme = re.search(r"\*\*Versión:\*\* (\S+)", (ROOT / "Readme.md").read_text(encoding="utf-8"))
+    change = re.search(r"^## (\S+)", (ROOT / "CHANGELOG.md").read_text(encoding="utf-8"), re.M)
+    shortcut = [a["WFWorkflowActionParameters"]["WFTextActionText"] for a in wf["WFWorkflowActions"]
+                if a["WFWorkflowActionParameters"].get("CustomOutputName") == "Versión valor"]
+    for name, v in (("Readme.md", readme and readme.group(1)),
+                    ("CHANGELOG.md", change and change.group(1)),
+                    ("atajo", shortcut[0] if len(shortcut) == 1 else None)):
+        if v != ver:
+            errors.append(f"versión de {name} ({v}) distinta a version.json ({ver})")
+    url = json.loads((ROOT / "version.json").read_text(encoding="utf-8")).get("url", "")
+    pattern = [a["WFWorkflowActionParameters"]["WFMatchTextPattern"] for a in wf["WFWorkflowActions"]
+               if a["WFWorkflowActionParameters"].get("CustomOutputName") == "Enlace válido"]
+    if url and (len(pattern) != 1 or not re.search(pattern[0], url, re.I)):
+        errors.append("version.json: url no es un enlace que el atajo acepte")
     if errors:
         raise SystemExit("\n".join(errors))
     print("OK")

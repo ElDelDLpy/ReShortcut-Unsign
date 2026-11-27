@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Incrusta src/unsign.py en el atajo y genera dist/ (plist binario sin firmar).
+"""Incrusta src/unsign.py y lang/es.json en el atajo y genera dist/ (plist binario sin firmar).
 
 Uso: python3 tools/build.py
 """
@@ -16,6 +16,11 @@ def main():
     if len(targets) != 1:
         raise SystemExit("No encontré una única acción 'Script base64'")
     targets[0]["WFTextActionText"] = base64.b64encode((ROOT / "src" / "unsign.py").read_bytes()).decode()
+    base = [a["WFWorkflowActionParameters"] for a in wf["WFWorkflowActions"]
+            if a["WFWorkflowActionParameters"].get("CustomOutputName") == "Idioma base"]
+    if len(base) != 1:
+        raise SystemExit("No encontré una única acción 'Idioma base'")
+    base[0]["WFTextActionText"] = (ROOT / "lang" / "es.json").read_text(encoding="utf-8").strip()
     SRC.write_text(json.dumps(wf, ensure_ascii=False, indent=2), encoding="utf-8")
     out = ROOT / "dist" / "ReShortcut Unsign.shortcut"
     out.parent.mkdir(exist_ok=True)

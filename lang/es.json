@@ -1,1 +1,9 @@
-esss
+{
+  "_code": "es",
+  "_name": "Español",
+  "menu_output_title": "¿Qué quieres obtener?",
+  "menu_output_shortcut": "Solo .shortcut",
+  "menu_output_json": "Solo JSON",
+  "menu_output_all": "Todos",
+  "menu_output_plist": "Solo plist (XML)"
+}

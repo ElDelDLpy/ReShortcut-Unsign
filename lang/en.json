@@ -1,0 +1,9 @@
+{
+  "_code": "en",
+  "_name": "English",
+  "menu_output_title": "What do you want to get?",
+  "menu_output_shortcut": ".shortcut only",
+  "menu_output_json": "JSON only",
+  "menu_output_all": "All",
+  "menu_output_plist": "plist (XML) only"
+}

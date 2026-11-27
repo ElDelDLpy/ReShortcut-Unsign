@@ -1,11 +1,13 @@
 {
-  "version": "0.0.3",
-  "build": 3,
-  "url": "https://www.icloud.com/shortcuts/dd908f6334cf416b96d813d3b8722f53",
+  "version": "0.0.4",
+  "build": 4,
+  "url": "https://raw.githubusercontent.com/ElDelDLpy/ReShortcut-Unsign/dev/shortcut/ReShortcut-Unsign.shortcut",
   "notes": {
-    "es": "Revisión de actualizaciones"
+    "es": "Actualización desde GitHub",
+    "en": "Update from GitHub"
   },
   "lang": {
-    "es": 1
+    "es": 1,
+    "en": 1
   }
 }
