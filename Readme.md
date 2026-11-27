@@ -2,7 +2,7 @@
 
 Atajo de iOS que quita la firma a un atajo y convierte entre `.shortcut`, JSON y plist (XML).
 
-**Versión:** 0.0.7 (en pruebas)
+**Versión:** 0.0.8 (en pruebas)
 
 ## Entradas
 
@@ -22,7 +22,7 @@ Antes de publicar en `main`, cambia la acción de texto `Canal` de `dev` a `main
 
 ## Idiomas
 
-Se traducen menús, preguntas y avisos (español e inglés). El selector de idioma y el aviso de error de descarga van siempre en ambos idiomas. Abre el atajo sin entrada y elige **Idioma / Language**. El español va incrustado desde `lang/es.json`; el inglés se descarga y se guarda en `Shortcuts/ReShortcutUnsign/`. El idioma guardado se vuelve a descargar con la revisión diaria de actualizaciones, así que se actualiza sin tener que elegirlo otra vez; si la descarga falla, se queda el anterior. Las claves no llevan puntos, porque Atajos los interpreta como rutas.
+Se traducen menús, preguntas y avisos (español e inglés). El selector de idioma y el aviso de error de descarga van siempre en ambos idiomas. Abre el atajo sin entrada y elige **Idioma / Language**. El español va incrustado desde `lang/es.json`; el inglés se descarga y se guarda como texto en `Shortcuts/ReShortcutUnsign/lang/en.txt` (Atajos fuerza `.txt` al guardar texto; el contenido sigue siendo JSON). El idioma guardado se vuelve a descargar con la revisión diaria de actualizaciones, así que se actualiza sin tener que elegirlo otra vez; si la descarga falla, se queda el anterior. Las claves no llevan puntos, porque Atajos los interpreta como rutas.
 
 ## Instalación
 

@@ -1,9 +1,14 @@
 # Cambios
 
+## 0.0.8 (en pruebas)
+
+- Menús, preguntas y alertas con emojis como iconos. El emoji va fijo en el atajo, delante del texto traducido, así que `lang/es.json` y `lang/en.json` quedan sin emojis y no hay que volver a subir los idiomas.
+- Selector de idioma con 🌐, 🇪🇸 y 🇬🇧.
+
 ## 0.0.7 (en pruebas)
 
 - El atajo se llama ReShortcut-Unsign (antes ReShortcut Unsign) y su fuente en `src/` pasa de JSON a plist: `src/ReShortcut-Unsign.plist`.
-- Idioma: el pack descargado se convierte a texto antes de guardarlo en `ReShortcutUnsign/lang/` (igual que `idioma.txt`), para que se guarde como archivo y no quede un idioma que no se aplica.
+- Idioma: el pack se guarda como texto en `ReShortcutUnsign/lang/<código>.txt` (igual que `idioma.txt`) y se lee de ahí, porque Atajos fuerza `.txt` al guardar texto y el `.json` no se encontraba. El contenido sigue siendo JSON.
 - Actualizar: con un enlace de GitHub descarga el `.shortcut` firmado (Obtener contenido de URL) y lo abre con Abrir archivo (antes Abrir URL); `shortcuts://import-workflow` no funcionó en las pruebas. Los enlaces de iCloud se abren igual que antes.
 
 ## 0.0.6 (en pruebas)

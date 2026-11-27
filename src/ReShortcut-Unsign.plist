@@ -27,7 +27,7 @@
 			<key>WFWorkflowActionParameters</key>
 			<dict>
 				<key>WFCommentActionText</key>
-				<string>ReShortcut-Unsign v0.0.7
+				<string>ReShortcut-Unsign v0.0.8
 Quita la firma a un atajo. Entrada: enlace de iCloud, archivo .shortcut, .json o .plist (hoja de compartir o elegido al ejecutar).
 Si la entrada es un .json o .plist pregunta si generar el .shortcut sin firmar (modo a-Shell). .shortcut es el único formato que iOS importa (.wflow es de Automator/macOS).
 Salida a elegir: solo .shortcut, solo JSON, solo plist (XML) o todos.
@@ -49,7 +49,7 @@ Para reimportar el resultado en iOS hay que firmarlo.</string>
 				<key>CustomOutputName</key>
 				<string>Versión valor</string>
 				<key>WFTextActionText</key>
-				<string>0.0.7</string>
+				<string>0.0.8</string>
 			</dict>
 		</dict>
 		<dict>
@@ -326,7 +326,7 @@ Para reimportar el resultado en iOS hay que firmarlo.</string>
 					<key>Value</key>
 					<dict>
 						<key>string</key>
-						<string>ReShortcutUnsign/lang/￼.json</string>
+						<string>ReShortcutUnsign/lang/￼.txt</string>
 						<key>attachmentsByRange</key>
 						<dict>
 							<key>{22, 1}</key>
@@ -408,11 +408,11 @@ Para reimportar el resultado en iOS hay que firmarlo.</string>
 		</dict>
 		<dict>
 			<key>WFWorkflowActionIdentifier</key>
-			<string>is.workflow.actions.detect.dictionary</string>
+			<string>is.workflow.actions.detect.text</string>
 			<key>WFWorkflowActionParameters</key>
 			<dict>
 				<key>CustomOutputName</key>
-				<string>Diccionario del pack</string>
+				<string>Pack guardado texto</string>
 				<key>WFInput</key>
 				<dict>
 					<key>Value</key>
@@ -423,6 +423,31 @@ Para reimportar el resultado en iOS hay que firmarlo.</string>
 						<string>ActionOutput</string>
 						<key>OutputName</key>
 						<string>Pack guardado</string>
+					</dict>
+					<key>WFSerializationType</key>
+					<string>WFTextTokenAttachment</string>
+				</dict>
+				<key>UUID</key>
+				<string>A78CC981-2889-43C3-AB3D-7A58B706C106</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>WFWorkflowActionIdentifier</key>
+			<string>is.workflow.actions.detect.dictionary</string>
+			<key>WFWorkflowActionParameters</key>
+			<dict>
+				<key>CustomOutputName</key>
+				<string>Diccionario del pack</string>
+				<key>WFInput</key>
+				<dict>
+					<key>Value</key>
+					<dict>
+						<key>OutputUUID</key>
+						<string>A78CC981-2889-43C3-AB3D-7A58B706C106</string>
+						<key>Type</key>
+						<string>ActionOutput</string>
+						<key>OutputName</key>
+						<string>Pack guardado texto</string>
 					</dict>
 					<key>WFSerializationType</key>
 					<string>WFTextTokenAttachment</string>
@@ -1323,10 +1348,10 @@ Para reimportar el resultado en iOS hay que firmarlo.</string>
 					<key>Value</key>
 					<dict>
 						<key>string</key>
-						<string>￼</string>
+						<string>🔗 ￼</string>
 						<key>attachmentsByRange</key>
 						<dict>
-							<key>{0, 1}</key>
+							<key>{3, 1}</key>
 							<dict>
 								<key>OutputUUID</key>
 								<string>601DC9EA-DAF7-470F-AEA7-5E6278266891</string>
@@ -1354,10 +1379,10 @@ Para reimportar el resultado en iOS hay que firmarlo.</string>
 							<key>Value</key>
 							<dict>
 								<key>string</key>
-								<string>￼</string>
+								<string>☁️ ￼</string>
 								<key>attachmentsByRange</key>
 								<dict>
-									<key>{0, 1}</key>
+									<key>{3, 1}</key>
 									<dict>
 										<key>OutputUUID</key>
 										<string>311575E6-0A0C-42FD-90AC-8C20EC51395D</string>
@@ -1380,10 +1405,10 @@ Para reimportar el resultado en iOS hay que firmarlo.</string>
 							<key>Value</key>
 							<dict>
 								<key>string</key>
-								<string>￼</string>
+								<string>📁 ￼</string>
 								<key>attachmentsByRange</key>
 								<dict>
-									<key>{0, 1}</key>
+									<key>{3, 1}</key>
 									<dict>
 										<key>OutputUUID</key>
 										<string>EEBF07BE-A24F-4009-94E6-D67AB1FC91DC</string>
@@ -1406,7 +1431,7 @@ Para reimportar el resultado en iOS hay que firmarlo.</string>
 							<key>Value</key>
 							<dict>
 								<key>string</key>
-								<string>Idioma / Language</string>
+								<string>🌐 Idioma / Language</string>
 								<key>attachmentsByRange</key>
 								<dict/>
 							</dict>
@@ -1435,10 +1460,10 @@ Para reimportar el resultado en iOS hay que firmarlo.</string>
 				<key>WFMenuItemAttributedTitle</key>
 				<dict>
 					<key>string</key>
-					<string>￼</string>
+					<string>☁️ ￼</string>
 					<key>attachmentsByRange</key>
 					<dict>
-						<key>{0, 1}</key>
+						<key>{3, 1}</key>
 						<dict>
 							<key>OutputUUID</key>
 							<string>311575E6-0A0C-42FD-90AC-8C20EC51395D</string>
@@ -1496,10 +1521,10 @@ Para reimportar el resultado en iOS hay que firmarlo.</string>
 					<key>Value</key>
 					<dict>
 						<key>string</key>
-						<string>￼</string>
+						<string>☁️ ￼</string>
 						<key>attachmentsByRange</key>
 						<dict>
-							<key>{0, 1}</key>
+							<key>{3, 1}</key>
 							<dict>
 								<key>OutputUUID</key>
 								<string>C2662C19-80B8-4C61-BC35-A465D4AEF9EA</string>
@@ -1705,10 +1730,10 @@ Para reimportar el resultado en iOS hay que firmarlo.</string>
 				<key>WFMenuItemAttributedTitle</key>
 				<dict>
 					<key>string</key>
-					<string>￼</string>
+					<string>📁 ￼</string>
 					<key>attachmentsByRange</key>
 					<dict>
-						<key>{0, 1}</key>
+						<key>{3, 1}</key>
 						<dict>
 							<key>OutputUUID</key>
 							<string>EEBF07BE-A24F-4009-94E6-D67AB1FC91DC</string>
@@ -1805,7 +1830,7 @@ Para reimportar el resultado en iOS hay que firmarlo.</string>
 				<key>WFControlFlowMode</key>
 				<integer>1</integer>
 				<key>WFMenuItemTitle</key>
-				<string>Idioma / Language</string>
+				<string>🌐 Idioma / Language</string>
 				<key>UUID</key>
 				<string>FD5E31B8-908C-4542-B641-3CD33AC8CDFC</string>
 			</dict>
@@ -1820,11 +1845,11 @@ Para reimportar el resultado en iOS hay que firmarlo.</string>
 				<key>WFControlFlowMode</key>
 				<integer>0</integer>
 				<key>WFMenuPrompt</key>
-				<string>Idioma / Language</string>
+				<string>🌐 Idioma / Language</string>
 				<key>WFMenuItems</key>
 				<array>
-					<string>Español</string>
-					<string>English</string>
+					<string>🇪🇸 Español</string>
+					<string>🇬🇧 English</string>
 				</array>
 				<key>UUID</key>
 				<string>B9D9B6A8-260A-49D0-9EE1-8378E529BBA4</string>
@@ -1840,7 +1865,7 @@ Para reimportar el resultado en iOS hay que firmarlo.</string>
 				<key>WFControlFlowMode</key>
 				<integer>1</integer>
 				<key>WFMenuItemTitle</key>
-				<string>Español</string>
+				<string>🇪🇸 Español</string>
 				<key>UUID</key>
 				<string>9F7D78ED-FA45-42A1-A352-3883CF7093D0</string>
 			</dict>
@@ -1893,9 +1918,9 @@ Para reimportar el resultado en iOS hay que firmarlo.</string>
 			<key>WFWorkflowActionParameters</key>
 			<dict>
 				<key>WFAlertActionTitle</key>
-				<string>Idioma guardado</string>
+				<string>✅ Idioma guardado</string>
 				<key>WFAlertActionMessage</key>
-				<string>Español</string>
+				<string>🇪🇸 Español</string>
 				<key>WFAlertActionCancelButtonShown</key>
 				<false/>
 				<key>UUID</key>
@@ -1912,7 +1937,7 @@ Para reimportar el resultado en iOS hay que firmarlo.</string>
 				<key>WFControlFlowMode</key>
 				<integer>1</integer>
 				<key>WFMenuItemTitle</key>
-				<string>English</string>
+				<string>🇬🇧 English</string>
 				<key>UUID</key>
 				<string>E5AF5633-730A-4D8E-8324-CD14AAA41FCD</string>
 			</dict>
@@ -2079,7 +2104,7 @@ Para reimportar el resultado en iOS hay que firmarlo.</string>
 			<key>WFWorkflowActionParameters</key>
 			<dict>
 				<key>WFAlertActionTitle</key>
-				<string>Error</string>
+				<string>❌ Error</string>
 				<key>WFAlertActionMessage</key>
 				<string>No pude descargar el idioma. / Could not download the language.</string>
 				<key>WFAlertActionCancelButtonShown</key>
@@ -2157,7 +2182,7 @@ Para reimportar el resultado en iOS hay que firmarlo.</string>
 				<key>WFAskWhereToSave</key>
 				<false/>
 				<key>WFFileDestinationPath</key>
-				<string>ReShortcutUnsign/lang/en.json</string>
+				<string>ReShortcutUnsign/lang/en.txt</string>
 				<key>WFSaveFileOverwrite</key>
 				<true/>
 				<key>UUID</key>
@@ -2212,9 +2237,9 @@ Para reimportar el resultado en iOS hay que firmarlo.</string>
 			<key>WFWorkflowActionParameters</key>
 			<dict>
 				<key>WFAlertActionTitle</key>
-				<string>Language saved</string>
+				<string>✅ Language saved</string>
 				<key>WFAlertActionMessage</key>
-				<string>English</string>
+				<string>🇬🇧 English</string>
 				<key>WFAlertActionCancelButtonShown</key>
 				<false/>
 				<key>UUID</key>
@@ -2382,10 +2407,10 @@ Para reimportar el resultado en iOS hay que firmarlo.</string>
 					<key>Value</key>
 					<dict>
 						<key>string</key>
-						<string>￼</string>
+						<string>⚠️ ￼</string>
 						<key>attachmentsByRange</key>
 						<dict>
-							<key>{0, 1}</key>
+							<key>{3, 1}</key>
 							<dict>
 								<key>OutputUUID</key>
 								<string>6A4F277D-F76D-4B67-9344-3A368F34EFE4</string>
@@ -2993,10 +3018,10 @@ Para reimportar el resultado en iOS hay que firmarlo.</string>
 					<key>Value</key>
 					<dict>
 						<key>string</key>
-						<string>￼</string>
+						<string>🔓 ￼</string>
 						<key>attachmentsByRange</key>
 						<dict>
-							<key>{0, 1}</key>
+							<key>{3, 1}</key>
 							<dict>
 								<key>OutputUUID</key>
 								<string>04CDDA65-4080-4735-A09C-C8893AC1CD25</string>
@@ -3020,10 +3045,10 @@ Para reimportar el resultado en iOS hay que firmarlo.</string>
 							<key>Value</key>
 							<dict>
 								<key>string</key>
-								<string>￼</string>
+								<string>🧾 ￼</string>
 								<key>attachmentsByRange</key>
 								<dict>
-									<key>{0, 1}</key>
+									<key>{3, 1}</key>
 									<dict>
 										<key>OutputUUID</key>
 										<string>711C2A03-43B5-44B4-97C9-5259DE73D7E9</string>
@@ -3046,10 +3071,10 @@ Para reimportar el resultado en iOS hay que firmarlo.</string>
 							<key>Value</key>
 							<dict>
 								<key>string</key>
-								<string>￼</string>
+								<string>📄 ￼</string>
 								<key>attachmentsByRange</key>
 								<dict>
-									<key>{0, 1}</key>
+									<key>{3, 1}</key>
 									<dict>
 										<key>OutputUUID</key>
 										<string>41C519A5-57C4-4593-9AB2-60635B4B84CA</string>
@@ -3072,10 +3097,10 @@ Para reimportar el resultado en iOS hay que firmarlo.</string>
 							<key>Value</key>
 							<dict>
 								<key>string</key>
-								<string>￼</string>
+								<string>📦 ￼</string>
 								<key>attachmentsByRange</key>
 								<dict>
-									<key>{0, 1}</key>
+									<key>{3, 1}</key>
 									<dict>
 										<key>OutputUUID</key>
 										<string>C1AD27E3-C846-4D2B-AC2E-D43B9F49F5FC</string>
@@ -3109,10 +3134,10 @@ Para reimportar el resultado en iOS hay que firmarlo.</string>
 				<key>WFMenuItemAttributedTitle</key>
 				<dict>
 					<key>string</key>
-					<string>￼</string>
+					<string>🧾 ￼</string>
 					<key>attachmentsByRange</key>
 					<dict>
-						<key>{0, 1}</key>
+						<key>{3, 1}</key>
 						<dict>
 							<key>OutputUUID</key>
 							<string>711C2A03-43B5-44B4-97C9-5259DE73D7E9</string>
@@ -3179,10 +3204,10 @@ Para reimportar el resultado en iOS hay que firmarlo.</string>
 				<key>WFMenuItemAttributedTitle</key>
 				<dict>
 					<key>string</key>
-					<string>￼</string>
+					<string>📄 ￼</string>
 					<key>attachmentsByRange</key>
 					<dict>
-						<key>{0, 1}</key>
+						<key>{3, 1}</key>
 						<dict>
 							<key>OutputUUID</key>
 							<string>41C519A5-57C4-4593-9AB2-60635B4B84CA</string>
@@ -3249,10 +3274,10 @@ Para reimportar el resultado en iOS hay que firmarlo.</string>
 				<key>WFMenuItemAttributedTitle</key>
 				<dict>
 					<key>string</key>
-					<string>￼</string>
+					<string>📦 ￼</string>
 					<key>attachmentsByRange</key>
 					<dict>
-						<key>{0, 1}</key>
+						<key>{3, 1}</key>
 						<dict>
 							<key>OutputUUID</key>
 							<string>C1AD27E3-C846-4D2B-AC2E-D43B9F49F5FC</string>
@@ -3543,10 +3568,10 @@ Para reimportar el resultado en iOS hay que firmarlo.</string>
 					<key>Value</key>
 					<dict>
 						<key>string</key>
-						<string>￼</string>
+						<string>🧩 ￼</string>
 						<key>attachmentsByRange</key>
 						<dict>
-							<key>{0, 1}</key>
+							<key>{3, 1}</key>
 							<dict>
 								<key>OutputUUID</key>
 								<string>D78591F2-5085-4A6A-A492-363CACEBBFE8</string>
@@ -3572,10 +3597,10 @@ Para reimportar el resultado en iOS hay que firmarlo.</string>
 							<key>Value</key>
 							<dict>
 								<key>string</key>
-								<string>￼</string>
+								<string>✅ ￼</string>
 								<key>attachmentsByRange</key>
 								<dict>
-									<key>{0, 1}</key>
+									<key>{2, 1}</key>
 									<dict>
 										<key>OutputUUID</key>
 										<string>8FF84C1D-DA3A-4AB0-9E20-E56968E5E4F1</string>
@@ -3598,10 +3623,10 @@ Para reimportar el resultado en iOS hay que firmarlo.</string>
 							<key>Value</key>
 							<dict>
 								<key>string</key>
-								<string>￼</string>
+								<string>↩️ ￼</string>
 								<key>attachmentsByRange</key>
 								<dict>
-									<key>{0, 1}</key>
+									<key>{3, 1}</key>
 									<dict>
 										<key>OutputUUID</key>
 										<string>D84546EF-BEA3-4FB1-8930-140243BD29D9</string>
@@ -3639,10 +3664,10 @@ Para reimportar el resultado en iOS hay que firmarlo.</string>
 				<key>WFMenuItemAttributedTitle</key>
 				<dict>
 					<key>string</key>
-					<string>￼</string>
+					<string>✅ ￼</string>
 					<key>attachmentsByRange</key>
 					<dict>
-						<key>{0, 1}</key>
+						<key>{2, 1}</key>
 						<dict>
 							<key>OutputUUID</key>
 							<string>8FF84C1D-DA3A-4AB0-9E20-E56968E5E4F1</string>
@@ -3747,10 +3772,10 @@ Para reimportar el resultado en iOS hay que firmarlo.</string>
 				<key>WFMenuItemAttributedTitle</key>
 				<dict>
 					<key>string</key>
-					<string>￼</string>
+					<string>↩️ ￼</string>
 					<key>attachmentsByRange</key>
 					<dict>
-						<key>{0, 1}</key>
+						<key>{3, 1}</key>
 						<dict>
 							<key>OutputUUID</key>
 							<string>D84546EF-BEA3-4FB1-8930-140243BD29D9</string>
@@ -3981,10 +4006,10 @@ Para reimportar el resultado en iOS hay que firmarlo.</string>
 					<key>Value</key>
 					<dict>
 						<key>string</key>
-						<string>￼</string>
+						<string>📤 ￼</string>
 						<key>attachmentsByRange</key>
 						<dict>
-							<key>{0, 1}</key>
+							<key>{3, 1}</key>
 							<dict>
 								<key>OutputUUID</key>
 								<string>C8C3D2F7-20F1-43CF-8861-3A9FFEEAA623</string>
@@ -4012,10 +4037,10 @@ Para reimportar el resultado en iOS hay que firmarlo.</string>
 							<key>Value</key>
 							<dict>
 								<key>string</key>
-								<string>￼</string>
+								<string>📲 ￼</string>
 								<key>attachmentsByRange</key>
 								<dict>
-									<key>{0, 1}</key>
+									<key>{3, 1}</key>
 									<dict>
 										<key>OutputUUID</key>
 										<string>C1EBB3A7-6101-4FE7-B296-726D0AC077C0</string>
@@ -4038,10 +4063,10 @@ Para reimportar el resultado en iOS hay que firmarlo.</string>
 							<key>Value</key>
 							<dict>
 								<key>string</key>
-								<string>￼</string>
+								<string>🧾 ￼</string>
 								<key>attachmentsByRange</key>
 								<dict>
-									<key>{0, 1}</key>
+									<key>{3, 1}</key>
 									<dict>
 										<key>OutputUUID</key>
 										<string>9D9CE0C1-370A-436E-8377-4BBC56F3DB67</string>
@@ -4064,10 +4089,10 @@ Para reimportar el resultado en iOS hay que firmarlo.</string>
 							<key>Value</key>
 							<dict>
 								<key>string</key>
-								<string>￼</string>
+								<string>📦 ￼</string>
 								<key>attachmentsByRange</key>
 								<dict>
-									<key>{0, 1}</key>
+									<key>{3, 1}</key>
 									<dict>
 										<key>OutputUUID</key>
 										<string>FD7946A2-360A-47E1-9D36-2694B438DBF9</string>
@@ -4090,10 +4115,10 @@ Para reimportar el resultado en iOS hay que firmarlo.</string>
 							<key>Value</key>
 							<dict>
 								<key>string</key>
-								<string>￼</string>
+								<string>📄 ￼</string>
 								<key>attachmentsByRange</key>
 								<dict>
-									<key>{0, 1}</key>
+									<key>{3, 1}</key>
 									<dict>
 										<key>OutputUUID</key>
 										<string>D7D12AA2-2B6D-4E78-AB0D-D57034002F65</string>
@@ -4129,10 +4154,10 @@ Para reimportar el resultado en iOS hay que firmarlo.</string>
 				<key>WFMenuItemAttributedTitle</key>
 				<dict>
 					<key>string</key>
-					<string>￼</string>
+					<string>📲 ￼</string>
 					<key>attachmentsByRange</key>
 					<dict>
-						<key>{0, 1}</key>
+						<key>{3, 1}</key>
 						<dict>
 							<key>OutputUUID</key>
 							<string>C1EBB3A7-6101-4FE7-B296-726D0AC077C0</string>
@@ -4199,10 +4224,10 @@ Para reimportar el resultado en iOS hay que firmarlo.</string>
 				<key>WFMenuItemAttributedTitle</key>
 				<dict>
 					<key>string</key>
-					<string>￼</string>
+					<string>🧾 ￼</string>
 					<key>attachmentsByRange</key>
 					<dict>
-						<key>{0, 1}</key>
+						<key>{3, 1}</key>
 						<dict>
 							<key>OutputUUID</key>
 							<string>9D9CE0C1-370A-436E-8377-4BBC56F3DB67</string>
@@ -4269,10 +4294,10 @@ Para reimportar el resultado en iOS hay que firmarlo.</string>
 				<key>WFMenuItemAttributedTitle</key>
 				<dict>
 					<key>string</key>
-					<string>￼</string>
+					<string>📦 ￼</string>
 					<key>attachmentsByRange</key>
 					<dict>
-						<key>{0, 1}</key>
+						<key>{3, 1}</key>
 						<dict>
 							<key>OutputUUID</key>
 							<string>FD7946A2-360A-47E1-9D36-2694B438DBF9</string>
@@ -4339,10 +4364,10 @@ Para reimportar el resultado en iOS hay que firmarlo.</string>
 				<key>WFMenuItemAttributedTitle</key>
 				<dict>
 					<key>string</key>
-					<string>￼</string>
+					<string>📄 ￼</string>
 					<key>attachmentsByRange</key>
 					<dict>
-						<key>{0, 1}</key>
+						<key>{3, 1}</key>
 						<dict>
 							<key>OutputUUID</key>
 							<string>D7D12AA2-2B6D-4E78-AB0D-D57034002F65</string>
@@ -5101,10 +5126,10 @@ Para reimportar el resultado en iOS hay que firmarlo.</string>
 					<key>Value</key>
 					<dict>
 						<key>string</key>
-						<string>￼</string>
+						<string>🐚 ￼</string>
 						<key>attachmentsByRange</key>
 						<dict>
-							<key>{0, 1}</key>
+							<key>{3, 1}</key>
 							<dict>
 								<key>OutputUUID</key>
 								<string>FCF75AE2-E056-4D40-B2D6-982F70850C7A</string>
@@ -5447,10 +5472,10 @@ Para reimportar el resultado en iOS hay que firmarlo.</string>
 					<key>Value</key>
 					<dict>
 						<key>string</key>
-						<string>￼</string>
+						<string>❌ ￼</string>
 						<key>attachmentsByRange</key>
 						<dict>
-							<key>{0, 1}</key>
+							<key>{2, 1}</key>
 							<dict>
 								<key>OutputUUID</key>
 								<string>A4790E31-B793-4219-A218-78E5CA3BE14F</string>
@@ -5761,10 +5786,10 @@ Para reimportar el resultado en iOS hay que firmarlo.</string>
 					<key>Value</key>
 					<dict>
 						<key>string</key>
-						<string>￼</string>
+						<string>⚡ ￼</string>
 						<key>attachmentsByRange</key>
 						<dict>
-							<key>{0, 1}</key>
+							<key>{2, 1}</key>
 							<dict>
 								<key>OutputUUID</key>
 								<string>25BF3049-2AE6-4D47-8BAE-A7D5FE18CCD7</string>
@@ -5903,10 +5928,10 @@ Para reimportar el resultado en iOS hay que firmarlo.</string>
 					<key>Value</key>
 					<dict>
 						<key>string</key>
-						<string>￼</string>
+						<string>✏️ ￼</string>
 						<key>attachmentsByRange</key>
 						<dict>
-							<key>{0, 1}</key>
+							<key>{3, 1}</key>
 							<dict>
 								<key>OutputUUID</key>
 								<string>626FD7D0-8670-4C1E-B37A-D2C984CDC232</string>
@@ -6948,10 +6973,10 @@ Para reimportar el resultado en iOS hay que firmarlo.</string>
 					<key>Value</key>
 					<dict>
 						<key>string</key>
-						<string>￼</string>
+						<string>❌ ￼</string>
 						<key>attachmentsByRange</key>
 						<dict>
-							<key>{0, 1}</key>
+							<key>{2, 1}</key>
 							<dict>
 								<key>OutputUUID</key>
 								<string>E545F96C-8B41-444F-85D1-05528F1F893C</string>
@@ -7123,10 +7148,10 @@ Para reimportar el resultado en iOS hay que firmarlo.</string>
 					<key>Value</key>
 					<dict>
 						<key>string</key>
-						<string>￼</string>
+						<string>ℹ️ ￼</string>
 						<key>attachmentsByRange</key>
 						<dict>
-							<key>{0, 1}</key>
+							<key>{3, 1}</key>
 							<dict>
 								<key>OutputUUID</key>
 								<string>4F66FF87-E9BB-4E9B-A27F-410473562D95</string>
@@ -7411,10 +7436,10 @@ Para reimportar el resultado en iOS hay que firmarlo.</string>
 					<key>Value</key>
 					<dict>
 						<key>string</key>
-						<string>￼</string>
+						<string>✅ ￼</string>
 						<key>attachmentsByRange</key>
 						<dict>
-							<key>{0, 1}</key>
+							<key>{2, 1}</key>
 							<dict>
 								<key>OutputUUID</key>
 								<string>860FA3C2-D78F-4885-8EF1-BE6BB573AC60</string>
@@ -7540,10 +7565,10 @@ Para reimportar el resultado en iOS hay que firmarlo.</string>
 					<key>Value</key>
 					<dict>
 						<key>string</key>
-						<string>￼</string>
+						<string>✅ ￼</string>
 						<key>attachmentsByRange</key>
 						<dict>
-							<key>{0, 1}</key>
+							<key>{2, 1}</key>
 							<dict>
 								<key>OutputUUID</key>
 								<string>C5DA24B1-A7D6-48BA-AFE8-BA5031B315AE</string>
@@ -8243,11 +8268,11 @@ Para reimportar el resultado en iOS hay que firmarlo.</string>
 					<key>Value</key>
 					<dict>
 						<key>string</key>
-						<string>￼ ￼
+						<string>🆕 ￼ ￼
 ￼</string>
 						<key>attachmentsByRange</key>
 						<dict>
-							<key>{0, 1}</key>
+							<key>{3, 1}</key>
 							<dict>
 								<key>OutputUUID</key>
 								<string>7576F825-EC39-412A-8FAA-152EF334EF07</string>
@@ -8256,7 +8281,7 @@ Para reimportar el resultado en iOS hay que firmarlo.</string>
 								<key>OutputName</key>
 								<string>menu_update_title</string>
 							</dict>
-							<key>{2, 1}</key>
+							<key>{5, 1}</key>
 							<dict>
 								<key>OutputUUID</key>
 								<string>55FD6F91-E8EA-4A99-8A23-1D13D3FAD4FF</string>
@@ -8265,7 +8290,7 @@ Para reimportar el resultado en iOS hay que firmarlo.</string>
 								<key>OutputName</key>
 								<string>Versión remota</string>
 							</dict>
-							<key>{4, 1}</key>
+							<key>{7, 1}</key>
 							<dict>
 								<key>OutputUUID</key>
 								<string>C4C87503-131F-41AB-A9AB-201A87D7E1E7</string>
@@ -8289,10 +8314,10 @@ Para reimportar el resultado en iOS hay que firmarlo.</string>
 							<key>Value</key>
 							<dict>
 								<key>string</key>
-								<string>￼</string>
+								<string>⬇️ ￼</string>
 								<key>attachmentsByRange</key>
 								<dict>
-									<key>{0, 1}</key>
+									<key>{3, 1}</key>
 									<dict>
 										<key>OutputUUID</key>
 										<string>A165D7FA-E66B-4863-916C-FB695A8CE372</string>
@@ -8315,10 +8340,10 @@ Para reimportar el resultado en iOS hay que firmarlo.</string>
 							<key>Value</key>
 							<dict>
 								<key>string</key>
-								<string>￼</string>
+								<string>⏳ ￼</string>
 								<key>attachmentsByRange</key>
 								<dict>
-									<key>{0, 1}</key>
+									<key>{2, 1}</key>
 									<dict>
 										<key>OutputUUID</key>
 										<string>5A3D7268-782F-4EF6-A4AD-D6F5BFE86943</string>
@@ -8354,10 +8379,10 @@ Para reimportar el resultado en iOS hay que firmarlo.</string>
 				<key>WFMenuItemAttributedTitle</key>
 				<dict>
 					<key>string</key>
-					<string>￼</string>
+					<string>⬇️ ￼</string>
 					<key>attachmentsByRange</key>
 					<dict>
-						<key>{0, 1}</key>
+						<key>{3, 1}</key>
 						<dict>
 							<key>OutputUUID</key>
 							<string>A165D7FA-E66B-4863-916C-FB695A8CE372</string>
@@ -8564,10 +8589,10 @@ Para reimportar el resultado en iOS hay que firmarlo.</string>
 				<key>WFMenuItemAttributedTitle</key>
 				<dict>
 					<key>string</key>
-					<string>￼</string>
+					<string>⏳ ￼</string>
 					<key>attachmentsByRange</key>
 					<dict>
-						<key>{0, 1}</key>
+						<key>{2, 1}</key>
 						<dict>
 							<key>OutputUUID</key>
 							<string>5A3D7268-782F-4EF6-A4AD-D6F5BFE86943</string>
@@ -8633,7 +8658,7 @@ Para reimportar el resultado en iOS hay que firmarlo.</string>
 					<key>Value</key>
 					<dict>
 						<key>string</key>
-						<string>ReShortcutUnsign/lang/￼.json</string>
+						<string>ReShortcutUnsign/lang/￼.txt</string>
 						<key>attachmentsByRange</key>
 						<dict>
 							<key>{22, 1}</key>
@@ -8902,7 +8927,7 @@ Para reimportar el resultado en iOS hay que firmarlo.</string>
 					<key>Value</key>
 					<dict>
 						<key>string</key>
-						<string>ReShortcutUnsign/lang/￼.json</string>
+						<string>ReShortcutUnsign/lang/￼.txt</string>
 						<key>attachmentsByRange</key>
 						<dict>
 							<key>{22, 1}</key>

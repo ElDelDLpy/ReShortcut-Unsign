@@ -1,10 +1,10 @@
 {
-  "version": "0.0.7",
-  "build": 7,
+  "version": "0.0.8",
+  "build": 8,
   "url": "https://raw.githubusercontent.com/ElDelDLpy/ReShortcut-Unsign/dev/shortcut/ReShortcut-Unsign.shortcut",
   "notes": {
-    "es": "Actualización descargando el archivo",
-    "en": "Update by downloading the file"
+    "es": "Menús y alertas con iconos y emojis",
+    "en": "Menus and alerts with icons and emojis"
   },
   "lang": {
     "es": 2,
