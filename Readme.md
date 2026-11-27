@@ -1,4 +1,4 @@
-# ReShortcut Unsign
+# ReShortcut-Unsign
 
 Atajo de iOS que quita la firma a un atajo y convierte entre `.shortcut`, JSON y plist (XML).
 
@@ -37,7 +37,7 @@ Se traducen menús, preguntas y avisos (español e inglés). El selector de idio
 ## Desarrollo
 
 ```sh
-python3 tools/build.py      # incrusta src/unsign.py y genera dist/
+python3 tools/build.py      # incrusta src/unsign.py en src/ReShortcut-Unsign.plist y genera dist/
 python3 tools/validate.py   # revisa la estructura
 ```
 
@@ -46,7 +46,7 @@ python3 tools/validate.py   # revisa la estructura
 ## Publicar una versión
 
 1. `python3 tools/build.py` y `python3 tools/validate.py`.
-2. Firma `dist/ReShortcut Unsign.shortcut` y súbelo como `shortcut/ReShortcut-Unsign.shortcut` (sin espacios en el nombre).
+2. Firma `dist/ReShortcut-Unsign.shortcut` y súbelo como `shortcut/ReShortcut-Unsign.shortcut`.
 3. Solo después, sube `version.json` con el `build` nuevo. `url` apunta al archivo de su rama, por ejemplo `https://raw.githubusercontent.com/ElDelDLpy/ReShortcut-Unsign/dev/shortcut/ReShortcut-Unsign.shortcut`.
 4. Para probar la actualización, instala una versión con `build` menor que el de `version.json`. Bórrale `ultima_revision.txt` si ya revisó hoy.
 

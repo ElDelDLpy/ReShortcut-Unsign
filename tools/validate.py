@@ -3,7 +3,7 @@
 
 Uso: python3 tools/validate.py
 """
-import base64, json, re
+import base64, json, plistlib, re
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -19,7 +19,7 @@ def refs(o):
             yield from refs(v)
 
 def main():
-    wf = json.loads((ROOT / "src" / "ReShortcut Unsign.json").read_text(encoding="utf-8"))
+    wf = plistlib.loads((ROOT / "src" / "ReShortcut-Unsign.plist").read_bytes())
     errors, seen, stack, script = [], set(), [], None
     for i, action in enumerate(wf["WFWorkflowActions"]):
         p = action["WFWorkflowActionParameters"]

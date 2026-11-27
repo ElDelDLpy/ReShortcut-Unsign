@@ -2,6 +2,8 @@
 
 ## 0.0.7 (en pruebas)
 
+- El atajo se llama ReShortcut-Unsign (antes ReShortcut Unsign) y su fuente en `src/` pasa de JSON a plist: `src/ReShortcut-Unsign.plist`.
+- Idioma: el pack descargado se convierte a texto antes de guardarlo en `ReShortcutUnsign/lang/` (igual que `idioma.txt`), para que se guarde como archivo y no quede un idioma que no se aplica.
 - Actualizar: con un enlace de GitHub descarga el `.shortcut` firmado (Obtener contenido de URL) y lo abre con Abrir archivo (antes Abrir URL); `shortcuts://import-workflow` no funcionó en las pruebas. Los enlaces de iCloud se abren igual que antes.
 
 ## 0.0.6 (en pruebas)
