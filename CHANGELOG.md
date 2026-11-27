@@ -1,5 +1,10 @@
 # Cambios
 
+## 0.0.2 (en pruebas)
+
+- Revisión de actualizaciones al terminar, una vez al día.
+- `version.json` con versión, build, enlace y notas.
+
 ## 0.0.1 (en pruebas)
 
 - Nuevo nombre: ReShortcut Unsign (antes ShortcutSimpleTool).
