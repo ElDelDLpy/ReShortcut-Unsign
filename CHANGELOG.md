@@ -4,6 +4,7 @@
 
 - Menús, preguntas y alertas con emojis como iconos. El emoji va fijo en el atajo, delante del texto traducido, así que `lang/es.json` y `lang/en.json` quedan sin emojis y no hay que volver a subir los idiomas.
 - Selector de idioma con 🌐, 🇪🇸 y 🇬🇧.
+- Corrige «No se pudo abrir el archivo idioma.txt» en la primera ejecución: antes de leer el idioma el atajo crea la carpeta `ReShortcutUnsign/lang` (guarda `carpeta.txt`), porque sin la carpeta Atajos daba error aunque «Error si no se encuentra» estuviera desactivado.
 
 ## 0.0.7 (en pruebas)
 
