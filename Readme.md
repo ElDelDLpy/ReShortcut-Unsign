@@ -24,6 +24,12 @@ Antes de publicar en `main`, cambia la acción de texto `Canal` de `dev` a `main
 
 Prototipo: solo se traduce el menú de salida (español e inglés). Abre el atajo sin entrada y elige **Idioma / Language**. El español va incrustado desde `lang/es.json`; el inglés se descarga y se guarda en `Shortcuts/ReShortcutUnsign/`. Las claves no llevan puntos, porque Atajos los interpreta como rutas.
 
+## Instalación
+
+1. Instala [a-Shell](https://holzschu.github.io/a-Shell_iOS/) (ver Requisitos).
+2. Desde el iPhone, descarga `shortcut/ReShortcut-Unsign.shortcut` de este repo y ábrelo con Atajos.
+3. La primera vez, Atajos pedirá permisos; acéptalos.
+
 ## Requisitos
 
 [a-Shell](https://holzschu.github.io/a-Shell_iOS/) para procesar archivos. Con un enlace de iCloud y salida *Solo .shortcut* no se usa.
