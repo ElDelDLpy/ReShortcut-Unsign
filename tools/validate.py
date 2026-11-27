@@ -68,6 +68,16 @@ def main():
                if a["WFWorkflowActionParameters"].get("CustomOutputName") == "Enlace válido"]
     if url and (len(pattern) != 1 or not re.search(pattern[0], url, re.I)):
         errors.append("version.json: url no es un enlace que el atajo acepte")
+    comment = next((a["WFWorkflowActionParameters"].get("WFCommentActionText", "") for a in wf["WFWorkflowActions"]
+                    if a["WFWorkflowActionIdentifier"].endswith(".comment")), "")
+    cv = re.search(r"\bv(\d+\.\d+\.\d+)", comment)
+    if not cv or cv.group(1) != ver:
+        errors.append(f"versión del comentario inicial ({cv and cv.group(1)}) distinta a version.json ({ver})")
+    used = {a["WFWorkflowActionParameters"]["WFDictionaryKey"] for a in wf["WFWorkflowActions"]
+            if a["WFWorkflowActionIdentifier"].endswith(".getvalueforkey")
+            and a["WFWorkflowActionParameters"].get("WFInput", {}).get("Value", {}).get("VariableName") == "Textos"
+            and isinstance(a["WFWorkflowActionParameters"].get("WFDictionaryKey"), str)}
+    errors += [f"el atajo usa la clave {k} y no está en es.json" for k in sorted(used - set(es))]
     if errors:
         raise SystemExit("\n".join(errors))
     print("OK")

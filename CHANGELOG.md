@@ -1,5 +1,12 @@
 # Cambios
 
+## 0.0.5 (en pruebas)
+
+- Menús, preguntas y avisos pasan a claves de `lang/*.json` (español e inglés).
+- Las notas de la versión se muestran en el idioma elegido.
+- Corrige la versión del comentario inicial del atajo.
+- `validate.py` revisa la versión del comentario y que las claves usadas existan en `es.json`.
+
 ## 0.0.4 (en pruebas)
 
 - La actualización acepta, además de iCloud, un enlace directo al `.shortcut` firmado en GitHub (se abre con `shortcuts://import-workflow`).
