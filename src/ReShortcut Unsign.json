@@ -12,7 +12,7 @@
     {
       "WFWorkflowActionIdentifier": "is.workflow.actions.comment",
       "WFWorkflowActionParameters": {
-        "WFCommentActionText": "ReShortcut Unsign v0.0.5\nQuita la firma a un atajo. Entrada: enlace de iCloud, archivo .shortcut, .json o .plist (hoja de compartir o elegido al ejecutar).\nSi la entrada es un .json o .plist pregunta si generar el .shortcut sin firmar (modo a-Shell). .shortcut es el único formato que iOS importa (.wflow es de Automator/macOS).\nSalida a elegir: solo .shortcut, solo JSON, solo plist (XML) o todos.\nModo nativo (sin a-Shell): enlace de iCloud + solo .shortcut.\nModo a-Shell: todo lo demás (archivos locales firmados, JSON, plist). unsign.py y el archivo de entrada se guardan solos en ~/Documents de a-Shell en cada ejecución.\nNunca sobrescribe sin confirmar. Avisa qué modo usa.\nPara reimportar el resultado en iOS hay que firmarlo.",
+        "WFCommentActionText": "ReShortcut Unsign v0.0.6\nQuita la firma a un atajo. Entrada: enlace de iCloud, archivo .shortcut, .json o .plist (hoja de compartir o elegido al ejecutar).\nSi la entrada es un .json o .plist pregunta si generar el .shortcut sin firmar (modo a-Shell). .shortcut es el único formato que iOS importa (.wflow es de Automator/macOS).\nSalida a elegir: solo .shortcut, solo JSON, solo plist (XML) o todos.\nModo nativo (sin a-Shell): enlace de iCloud + solo .shortcut.\nModo a-Shell: todo lo demás (archivos locales firmados, JSON, plist). unsign.py y el archivo de entrada se guardan solos en ~/Documents de a-Shell en cada ejecución.\nNunca sobrescribe sin confirmar. Avisa qué modo usa.\nPara reimportar el resultado en iOS hay que firmarlo.",
         "UUID": "288E5DC1-AC20-4F28-9DE7-4CB7D7BFFC58"
       }
     },
@@ -21,7 +21,7 @@
       "WFWorkflowActionParameters": {
         "UUID": "C3D5F6C1-1688-4216-ABB8-C716AA553F4C",
         "CustomOutputName": "Versión valor",
-        "WFTextActionText": "0.0.5"
+        "WFTextActionText": "0.0.6"
       }
     },
     {
@@ -5048,6 +5048,188 @@
         "GroupingIdentifier": "196DD5A3-9739-4A61-BA79-20CEE99BEB8B",
         "WFControlFlowMode": 2,
         "UUID": "B02AF7B7-142A-4733-A898-FB0CBB0B95EA"
+      }
+    },
+    {
+      "WFWorkflowActionIdentifier": "is.workflow.actions.documentpicker.open",
+      "WFWorkflowActionParameters": {
+        "CustomOutputName": "Pack local",
+        "WFShowFilePicker": false,
+        "WFGetFilePath": {
+          "Value": {
+            "string": "ReShortcutUnsign/lang/￼.json",
+            "attachmentsByRange": {
+              "{22, 1}": {
+                "Type": "Variable",
+                "VariableName": "Idioma"
+              }
+            }
+          },
+          "WFSerializationType": "WFTextTokenString"
+        },
+        "WFFileErrorIfNotFound": false,
+        "UUID": "F476E6C8-2F2C-4561-9766-59A0CD15B2D5"
+      }
+    },
+    {
+      "WFWorkflowActionIdentifier": "is.workflow.actions.conditional",
+      "WFWorkflowActionParameters": {
+        "GroupingIdentifier": "D95CA0F2-43AA-4ED1-9AD9-EE65BC7F32C9",
+        "WFControlFlowMode": 0,
+        "WFCondition": 100,
+        "WFInput": {
+          "Type": "Variable",
+          "Variable": {
+            "Value": {
+              "OutputUUID": "F476E6C8-2F2C-4561-9766-59A0CD15B2D5",
+              "Type": "ActionOutput",
+              "OutputName": "Pack local"
+            },
+            "WFSerializationType": "WFTextTokenAttachment"
+          }
+        },
+        "UUID": "6E41893A-FBD1-421D-B3D1-64679DAB665C"
+      }
+    },
+    {
+      "WFWorkflowActionIdentifier": "is.workflow.actions.url",
+      "WFWorkflowActionParameters": {
+        "CustomOutputName": "URL del pack local",
+        "WFURLActionURL": {
+          "Value": {
+            "string": "https://raw.githubusercontent.com/ElDelDLpy/ReShortcut-Unsign/￼/lang/￼.json",
+            "attachmentsByRange": {
+              "{62, 1}": {
+                "OutputUUID": "7E339312-BA97-467D-8137-946A09118174",
+                "Type": "ActionOutput",
+                "OutputName": "Canal"
+              },
+              "{69, 1}": {
+                "Type": "Variable",
+                "VariableName": "Idioma"
+              }
+            }
+          },
+          "WFSerializationType": "WFTextTokenString"
+        },
+        "UUID": "2CC8DCF5-B1B4-436F-B90A-B23C462E7175"
+      }
+    },
+    {
+      "WFWorkflowActionIdentifier": "is.workflow.actions.downloadurl",
+      "WFWorkflowActionParameters": {
+        "CustomOutputName": "Pack nuevo",
+        "WFURL": {
+          "Value": {
+            "string": "￼",
+            "attachmentsByRange": {
+              "{0, 1}": {
+                "OutputUUID": "2CC8DCF5-B1B4-436F-B90A-B23C462E7175",
+                "Type": "ActionOutput",
+                "OutputName": "URL del pack local"
+              }
+            }
+          },
+          "WFSerializationType": "WFTextTokenString"
+        },
+        "WFHTTPMethod": "GET",
+        "UUID": "7AFCDFDB-112F-4371-8851-CE53C413146B"
+      }
+    },
+    {
+      "WFWorkflowActionIdentifier": "is.workflow.actions.detect.dictionary",
+      "WFWorkflowActionParameters": {
+        "CustomOutputName": "Pack nuevo revisado",
+        "WFInput": {
+          "Value": {
+            "OutputUUID": "7AFCDFDB-112F-4371-8851-CE53C413146B",
+            "Type": "ActionOutput",
+            "OutputName": "Pack nuevo"
+          },
+          "WFSerializationType": "WFTextTokenAttachment"
+        },
+        "UUID": "60DDBD27-AA1F-489F-8329-82CFAB7E8341"
+      }
+    },
+    {
+      "WFWorkflowActionIdentifier": "is.workflow.actions.getvalueforkey",
+      "WFWorkflowActionParameters": {
+        "CustomOutputName": "Prueba del pack nuevo",
+        "WFInput": {
+          "Value": {
+            "OutputUUID": "60DDBD27-AA1F-489F-8329-82CFAB7E8341",
+            "Type": "ActionOutput",
+            "OutputName": "Pack nuevo revisado"
+          },
+          "WFSerializationType": "WFTextTokenAttachment"
+        },
+        "WFGetDictionaryValueType": "Value",
+        "WFDictionaryKey": "menu_output_title",
+        "UUID": "DE120CD1-BA5C-4200-AB99-6D5C64000B4E"
+      }
+    },
+    {
+      "WFWorkflowActionIdentifier": "is.workflow.actions.conditional",
+      "WFWorkflowActionParameters": {
+        "GroupingIdentifier": "902C3802-E735-4AF4-9E7B-20CA6C1D7EF0",
+        "WFControlFlowMode": 0,
+        "WFCondition": 100,
+        "WFInput": {
+          "Type": "Variable",
+          "Variable": {
+            "Value": {
+              "OutputUUID": "DE120CD1-BA5C-4200-AB99-6D5C64000B4E",
+              "Type": "ActionOutput",
+              "OutputName": "Prueba del pack nuevo"
+            },
+            "WFSerializationType": "WFTextTokenAttachment"
+          }
+        },
+        "UUID": "3F0E8E44-9D3D-4E9F-A582-501FAEDCE9DE"
+      }
+    },
+    {
+      "WFWorkflowActionIdentifier": "is.workflow.actions.documentpicker.save",
+      "WFWorkflowActionParameters": {
+        "WFInput": {
+          "Value": {
+            "OutputUUID": "7AFCDFDB-112F-4371-8851-CE53C413146B",
+            "Type": "ActionOutput",
+            "OutputName": "Pack nuevo"
+          },
+          "WFSerializationType": "WFTextTokenAttachment"
+        },
+        "WFAskWhereToSave": false,
+        "WFFileDestinationPath": {
+          "Value": {
+            "string": "ReShortcutUnsign/lang/￼.json",
+            "attachmentsByRange": {
+              "{22, 1}": {
+                "Type": "Variable",
+                "VariableName": "Idioma"
+              }
+            }
+          },
+          "WFSerializationType": "WFTextTokenString"
+        },
+        "WFSaveFileOverwrite": true,
+        "UUID": "A115BD4F-B1B1-4905-A585-2F57DFEB85A7"
+      }
+    },
+    {
+      "WFWorkflowActionIdentifier": "is.workflow.actions.conditional",
+      "WFWorkflowActionParameters": {
+        "GroupingIdentifier": "902C3802-E735-4AF4-9E7B-20CA6C1D7EF0",
+        "WFControlFlowMode": 2,
+        "UUID": "C4DD9B65-CFFF-4892-B4D2-FAC7CD80FB66"
+      }
+    },
+    {
+      "WFWorkflowActionIdentifier": "is.workflow.actions.conditional",
+      "WFWorkflowActionParameters": {
+        "GroupingIdentifier": "D95CA0F2-43AA-4ED1-9AD9-EE65BC7F32C9",
+        "WFControlFlowMode": 2,
+        "UUID": "60DF624A-C66A-46D5-9591-DC2B57DB0A9A"
       }
     },
     {

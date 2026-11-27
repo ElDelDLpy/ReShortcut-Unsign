@@ -1,5 +1,9 @@
 # Cambios
 
+## 0.0.6 (en pruebas)
+
+- La revisión diaria vuelve a descargar el idioma guardado (por ejemplo `en`) y lo reemplaza si la descarga es válida.
+
 ## 0.0.5 (en pruebas)
 
 - Menús, preguntas y avisos pasan a claves de `lang/*.json` (español e inglés).

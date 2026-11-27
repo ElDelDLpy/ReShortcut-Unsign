@@ -1,10 +1,10 @@
 {
-  "version": "0.0.5",
-  "build": 5,
+  "version": "0.0.6",
+  "build": 6,
   "url": "https://raw.githubusercontent.com/ElDelDLpy/ReShortcut-Unsign/dev/shortcut/ReShortcut-Unsign.shortcut",
   "notes": {
-    "es": "Todos los textos traducibles",
-    "en": "All texts translatable"
+    "es": "Los idiomas se actualizan solos",
+    "en": "Languages update on their own"
   },
   "lang": {
     "es": 2,
