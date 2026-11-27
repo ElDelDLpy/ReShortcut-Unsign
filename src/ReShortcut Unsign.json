@@ -5055,7 +5055,7 @@
       }
     },
     {
-      "WFWorkflowActionIdentifier": "is.workflow.actions.openurl",
+      "WFWorkflowActionIdentifier": "is.workflow.actions.openin",
       "WFWorkflowActionParameters": {
         "WFInput": {
           "Value": {
