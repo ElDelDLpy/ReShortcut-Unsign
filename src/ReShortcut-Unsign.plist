@@ -27,7 +27,7 @@
 			<key>WFWorkflowActionParameters</key>
 			<dict>
 				<key>WFCommentActionText</key>
-				<string>ReShortcut-Unsign v0.0.9
+				<string>ReShortcut-Unsign v0.1.0
 Quita la firma a un atajo. Entrada: enlace de iCloud, archivo .shortcut, .json o .plist (hoja de compartir o elegido al ejecutar).
 Si la entrada es un .json o .plist pregunta si generar el .shortcut sin firmar (modo a-Shell). .shortcut es el único formato que iOS importa (.wflow es de Automator/macOS).
 Salida a elegir: solo .shortcut, solo JSON, solo plist (XML) o todos.
@@ -49,7 +49,7 @@ Para reimportar el resultado en iOS hay que firmarlo.</string>
 				<key>CustomOutputName</key>
 				<string>Versión valor</string>
 				<key>WFTextActionText</key>
-				<string>0.0.9</string>
+				<string>0.1.0</string>
 			</dict>
 		</dict>
 		<dict>
@@ -7996,37 +7996,12 @@ Para reimportar el resultado en iOS hay que firmarlo.</string>
 		</dict>
 		<dict>
 			<key>WFWorkflowActionIdentifier</key>
-			<string>is.workflow.actions.conditional</string>
+			<string>is.workflow.actions.gettext</string>
 			<key>WFWorkflowActionParameters</key>
 			<dict>
-				<key>GroupingIdentifier</key>
-				<string>196DD5A3-9739-4A61-BA79-20CEE99BEB8B</string>
-				<key>WFControlFlowMode</key>
-				<integer>0</integer>
-				<key>WFCondition</key>
-				<integer>5</integer>
-				<key>WFInput</key>
-				<dict>
-					<key>Type</key>
-					<string>Variable</string>
-					<key>Variable</key>
-					<dict>
-						<key>Value</key>
-						<dict>
-							<key>OutputUUID</key>
-							<string>55FD6F91-E8EA-4A99-8A23-1D13D3FAD4FF</string>
-							<key>Type</key>
-							<string>ActionOutput</string>
-							<key>OutputName</key>
-							<string>Versión remota</string>
-						</dict>
-						<key>WFSerializationType</key>
-						<string>WFTextTokenAttachment</string>
-					</dict>
-				</dict>
-				<key>UUID</key>
-				<string>3A7502E7-49B2-4CDC-AB71-0CA9DDFD321A</string>
-				<key>WFConditionalActionString</key>
+				<key>CustomOutputName</key>
+				<string>Versión remota texto</string>
+				<key>WFTextActionText</key>
 				<dict>
 					<key>Value</key>
 					<dict>
@@ -8036,16 +8011,100 @@ Para reimportar el resultado en iOS hay que firmarlo.</string>
 						<dict>
 							<key>{0, 1}</key>
 							<dict>
+								<key>OutputUUID</key>
+								<string>55FD6F91-E8EA-4A99-8A23-1D13D3FAD4FF</string>
 								<key>Type</key>
-								<string>Variable</string>
-								<key>VariableName</key>
-								<string>Version</string>
+								<string>ActionOutput</string>
+								<key>OutputName</key>
+								<string>Versión remota</string>
 							</dict>
 						</dict>
 					</dict>
 					<key>WFSerializationType</key>
 					<string>WFTextTokenString</string>
 				</dict>
+				<key>UUID</key>
+				<string>71CE0AB4-3CE8-46EF-97E5-6715DE0E27B8</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>WFWorkflowActionIdentifier</key>
+			<string>is.workflow.actions.text.match</string>
+			<key>WFWorkflowActionParameters</key>
+			<dict>
+				<key>CustomOutputName</key>
+				<string>Misma versión</string>
+				<key>WFMatchTextPattern</key>
+				<string>\A\s*([^\s|]+)\s*\|\1\s*\Z</string>
+				<key>WFMatchTextCaseSensitive</key>
+				<false/>
+				<key>text</key>
+				<dict>
+					<key>Value</key>
+					<dict>
+						<key>string</key>
+						<string>￼|￼</string>
+						<key>attachmentsByRange</key>
+						<dict>
+							<key>{0, 1}</key>
+							<dict>
+								<key>OutputUUID</key>
+								<string>71CE0AB4-3CE8-46EF-97E5-6715DE0E27B8</string>
+								<key>Type</key>
+								<string>ActionOutput</string>
+								<key>OutputName</key>
+								<string>Versión remota texto</string>
+							</dict>
+							<key>{2, 1}</key>
+							<dict>
+								<key>OutputUUID</key>
+								<string>C3D5F6C1-1688-4216-ABB8-C716AA553F4C</string>
+								<key>Type</key>
+								<string>ActionOutput</string>
+								<key>OutputName</key>
+								<string>Versión valor</string>
+							</dict>
+						</dict>
+					</dict>
+					<key>WFSerializationType</key>
+					<string>WFTextTokenString</string>
+				</dict>
+				<key>UUID</key>
+				<string>A8E4B00F-788E-4E7E-A582-84132C69FFB4</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>WFWorkflowActionIdentifier</key>
+			<string>is.workflow.actions.conditional</string>
+			<key>WFWorkflowActionParameters</key>
+			<dict>
+				<key>GroupingIdentifier</key>
+				<string>196DD5A3-9739-4A61-BA79-20CEE99BEB8B</string>
+				<key>WFControlFlowMode</key>
+				<integer>0</integer>
+				<key>WFCondition</key>
+				<integer>101</integer>
+				<key>WFInput</key>
+				<dict>
+					<key>Type</key>
+					<string>Variable</string>
+					<key>Variable</key>
+					<dict>
+						<key>Value</key>
+						<dict>
+							<key>OutputUUID</key>
+							<string>A8E4B00F-788E-4E7E-A582-84132C69FFB4</string>
+							<key>Type</key>
+							<string>ActionOutput</string>
+							<key>OutputName</key>
+							<string>Misma versión</string>
+						</dict>
+						<key>WFSerializationType</key>
+						<string>WFTextTokenAttachment</string>
+					</dict>
+				</dict>
+				<key>UUID</key>
+				<string>3A7502E7-49B2-4CDC-AB71-0CA9DDFD321A</string>
 			</dict>
 		</dict>
 		<dict>

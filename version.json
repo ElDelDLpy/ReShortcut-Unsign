@@ -1,10 +1,10 @@
 {
-  "version": "0.0.9",
-  "build": 9,
+  "version": "0.1.0",
+  "build": 10,
   "url": "https://raw.githubusercontent.com/ElDelDLpy/ReShortcut-Unsign/dev/shortcut/ReShortcut-Unsign.shortcut",
   "notes": {
-    "es": "Corrige la detección de actualizaciones: solo avisa si la versión es distinta",
-    "en": "Fixes update detection: only prompts when the version differs"
+    "es": "Corrige de nuevo la detección de actualizaciones: compara la versión como texto",
+    "en": "Fixes update detection again: compares the version as text"
   },
   "lang": {
     "es": 2,

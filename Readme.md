@@ -2,7 +2,7 @@
 
 Atajo de iOS que quita la firma a un atajo y convierte entre `.shortcut`, JSON y plist (XML).
 
-**Versión:** 0.0.9 (en pruebas)
+**Versión:** 0.1.0 (en pruebas)
 
 ## Entradas
 

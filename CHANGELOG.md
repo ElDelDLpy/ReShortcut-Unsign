@@ -1,5 +1,10 @@
 # Cambios
 
+## 0.1.0 (en pruebas)
+
+- Corrige la condición de actualización que Atajos marcaba como incompleta («Elige un valor para cada parámetro»): la versión remota pasa por una acción de Texto y se compara con la instalada con una coincidencia de texto (`remota|instalada`), el mismo método que la revisión diaria. Si no coinciden, ofrece actualizar; si son iguales, no avisa.
+- `validate.py` revisa esa comparación.
+
 ## 0.0.9 (en pruebas)
 
 - Corrige la detección de actualizaciones: avisaba siempre porque comparaba el `build` remoto con un número fijo. Ahora compara la `version` de `version.json` con la instalada y solo ofrece actualizar si es **distinta** (también si la remota es menor).

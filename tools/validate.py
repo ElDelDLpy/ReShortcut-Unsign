@@ -74,16 +74,21 @@ def main():
     if not cv or cv.group(1) != ver:
         errors.append(f"versión del comentario inicial ({cv and cv.group(1)}) distinta a version.json ({ver})")
     acts = wf["WFWorkflowActions"]
-    ids = [a["WFWorkflowActionParameters"].get("CustomOutputName") for a in acts]
-    if "Versión remota" not in ids:
-        errors.append("falta la acción 'Versión remota'")
-    else:
-        i = ids.index("Versión remota")
-        c = acts[i + 1]["WFWorkflowActionParameters"] if i + 1 < len(acts) else {}
-        s = c.get("WFConditionalActionString", {}).get("Value", {}).get("attachmentsByRange", {})
-        if (c.get("WFCondition") != 5 or "WFNumberValue" in c
-                or [v.get("VariableName") for v in s.values()] != ["Version"]):
-            errors.append("la condición de actualización debe ser: Versión remota «no es» la variable Version")
+    names = [x["WFWorkflowActionParameters"].get("CustomOutputName") for x in acts]
+    try:
+        i = names.index("Misma versión")
+        m = acts[i]["WFWorkflowActionParameters"]
+        c = acts[i + 1]["WFWorkflowActionParameters"]
+        used_in = [v.get("OutputName") for v in m["text"]["Value"]["attachmentsByRange"].values()]
+        ok = (acts[i]["WFWorkflowActionIdentifier"].endswith("text.match")
+              and used_in == ["Versión remota texto", "Versión valor"]
+              and "Versión remota texto" in names[:i]
+              and c.get("WFCondition") == 101
+              and c["WFInput"]["Variable"]["Value"]["OutputUUID"] == m["UUID"])
+    except (ValueError, KeyError, IndexError):
+        ok = False
+    if not ok:
+        errors.append("la comparación de versión debe ser: Texto(remota) | Versión valor -> coincidencia -> Si «no tiene ningún valor»")
     used = {a["WFWorkflowActionParameters"]["WFDictionaryKey"] for a in wf["WFWorkflowActions"]
             if a["WFWorkflowActionIdentifier"].endswith(".getvalueforkey")
             and a["WFWorkflowActionParameters"].get("WFInput", {}).get("Value", {}).get("VariableName") == "Textos"
