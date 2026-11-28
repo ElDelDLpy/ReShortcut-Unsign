@@ -2,7 +2,7 @@
   "version": "0.0.9",
   "url": "https://raw.githubusercontent.com/ElDelDLpy/ReShortcut-Unsign/dev/ReShortcut-Unsign.shortcut",
   "notes": {
-    "es": "Ahora el aviso de actualización salta solo cuando la versión es distinta.",
-    "en": "The update prompt now appears only when the version differs."
+    "es": "El aviso de actualización salta solo si la versión es distinta.",
+    "en": "The update prompt appears only when the version differs."
   }
 }
