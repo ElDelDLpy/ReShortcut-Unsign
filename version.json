@@ -1,13 +1,8 @@
 {
-  "version": "0.0.8",
-  "build": 8,
-  "url": "https://raw.githubusercontent.com/ElDelDLpy/ReShortcut-Unsign/dev/shortcut/ReShortcut-Unsign.shortcut",
+  "version": "0.0.9",
+  "url": "https://raw.githubusercontent.com/ElDelDLpy/ReShortcut-Unsign/dev/ReShortcut-Unsign.shortcut",
   "notes": {
-    "es": "Menús y alertas con iconos y emojis",
-    "en": "Menus and alerts with icons and emojis"
-  },
-  "lang": {
-    "es": 2,
-    "en": 2
+    "es": "Ahora el aviso de actualización salta solo cuando la versión es distinta.",
+    "en": "The update prompt now appears only when the version differs."
   }
 }
