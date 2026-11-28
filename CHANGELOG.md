@@ -1,5 +1,10 @@
 # Cambios
 
+## 0.0.9 (en pruebas)
+
+- Corrige la detección de actualizaciones: avisaba siempre porque comparaba el `build` remoto con un número fijo. Ahora compara la `version` de `version.json` con la instalada y solo ofrece actualizar si es **distinta** (también si la remota es menor).
+- `validate.py` revisa que la condición de actualización compare la versión instalada y no un número fijo.
+
 ## 0.0.8 (en pruebas)
 
 - Menús, preguntas y alertas con emojis como iconos. El emoji va fijo en el atajo, delante del texto traducido, así que `lang/es.json` y `lang/en.json` quedan sin emojis y no hay que volver a subir los idiomas.

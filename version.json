@@ -1,8 +1,13 @@
 {
   "version": "0.0.9",
-  "url": "https://raw.githubusercontent.com/ElDelDLpy/ReShortcut-Unsign/dev/ReShortcut-Unsign.shortcut",
+  "build": 9,
+  "url": "https://raw.githubusercontent.com/ElDelDLpy/ReShortcut-Unsign/dev/shortcut/ReShortcut-Unsign.shortcut",
   "notes": {
-    "es": "El aviso de actualización salta solo si la versión es distinta.",
-    "en": "The update prompt appears only when the version differs."
+    "es": "Corrige la detección de actualizaciones: solo avisa si la versión es distinta",
+    "en": "Fixes update detection: only prompts when the version differs"
+  },
+  "lang": {
+    "es": 2,
+    "en": 2
   }
 }
