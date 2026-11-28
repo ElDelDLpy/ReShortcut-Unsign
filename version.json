@@ -1,7 +1,7 @@
 {
   "version": "0.1.0",
   "build": 10,
-  "url": "https://raw.githubusercontent.com/ElDelDLpy/ReShortcut-Unsign/dev/shortcut/ReShortcut-Unsign.shortcut",
+  "url": "https://www.icloud.com/shortcuts/e7c58a4e3304493bab785a51e03f86f7",
   "notes": {
     "es": "Corrige de nuevo la detección de actualizaciones: compara la versión como texto",
     "en": "Fixes update detection again: compares the version as text"
