@@ -49,5 +49,17 @@
   "cfg_manual": "Manual only",
   "cfg_now": "Check now",
   "alert_cfg_saved_title": "Saved",
-  "alert_cfg_now_message": "It will check the next time you open the shortcut."
+  "alert_cfg_now_message": "It will check the next time you open the shortcut.",
+  "menu_check_title": "Check for updates",
+  "menu_check_note": "Needs internet. If it fails, you will be asked again the next time you open the shortcut.",
+  "menu_check_now": "Check now",
+  "cfg_freq": "Frequency",
+  "cfg_notice": "Notice before checking",
+  "cfg_on": "On",
+  "cfg_off": "Off",
+  "cfg_ashell": "Verify a-Shell again",
+  "cfg_reset": "Reset settings",
+  "alert_cfg_ashell_message": "It will ask again whether you have a-Shell the next time it is needed.",
+  "alert_cfg_reset_confirm": "This resets the update frequency (every day), the notice before checking (on) and the a-Shell check. The language does not change.",
+  "alert_cfg_reset_done": "Settings reset."
 }

@@ -18,12 +18,28 @@ def refs(o):
         for v in o:
             yield from refs(v)
 
+def var_refs(o):
+    if isinstance(o, dict):
+        if o.get("Type") == "Variable" and "VariableName" in o:
+            yield o["VariableName"]
+        for v in o.values():
+            yield from var_refs(v)
+    elif isinstance(o, list):
+        for v in o:
+            yield from var_refs(v)
+
 def main():
     wf = plistlib.loads((ROOT / "src" / "ReShortcut-Unsign.plist").read_bytes())
     errors, seen, stack, script = [], set(), [], None
+    setvars = {"Repeat Item"}          # variables ya definidas (Repeat Item la crea el bucle)
+    menus, cond_input, check_menu_seen = {}, {}, False
     for i, action in enumerate(wf["WFWorkflowActions"]):
         p = action["WFWorkflowActionParameters"]
+        ident = action["WFWorkflowActionIdentifier"].rsplit(".", 1)[-1]
         errors += [f"acción {i}: referencia a una salida inexistente {r}" for r in refs(p) if r not in seen]
+        errors += [f"acción {i}: usa la variable «{v}» antes de definirla" for v in sorted(set(var_refs(p))) if v not in setvars]
+        if ident == "setvariable":
+            setvars.add(p["WFVariableName"])
         uid = p.get("UUID")
         if uid:
             if uid in seen:
@@ -32,15 +48,48 @@ def main():
         mode, group = p.get("WFControlFlowMode"), p.get("GroupingIdentifier")
         if mode == 0:
             stack.append(group)
+            if ident == "conditional":
+                cond_input[group] = p.get("WFInput", {}).get("Variable", {}).get("Value", {}).get("VariableName")
         elif mode is not None:
             if not stack or stack[-1] != group:
                 errors.append(f"acción {i}: bloque mal anidado")
             elif mode == 2:
                 stack.pop()
+        if ident == "choosefrommenu":
+            if mode == 0:
+                menus[group] = [len(p["WFMenuItems"]), 0]
+                prompt = p.get("WFMenuPrompt")
+                atts = prompt["Value"]["attachmentsByRange"].values() if isinstance(prompt, dict) else []
+                names = {a.get("OutputName") for a in atts}
+                check_menu_seen = check_menu_seen or "menu_check_title" in names
+            elif mode == 1 and group in menus:
+                menus[group][1] += 1
+        if p.get("CustomOutputName") == "URL de versión":
+            # el aviso previo (Revisar ahora / Omitir) va antes de consultar version.json
+            if not check_menu_seen:
+                errors.append("falta el aviso previo (menu_check_title) antes de consultar version.json")
+            if "Buscar" not in [cond_input.get(g) for g in stack]:
+                errors.append("la consulta de version.json debe ir dentro de «Si Buscar es si» (así Omitir no busca)")
         if p.get("CustomOutputName") == "Script base64":
             script = base64.b64decode(p["WFTextActionText"])
     if stack:
         errors.append("hay bloques sin cerrar")
+    errors += [f"menú {g[:8]}: {n} opciones y {c} casos" for g, (n, c) in menus.items() if n != c]
+    main_menu = [a["WFWorkflowActionParameters"] for a in wf["WFWorkflowActions"]
+                 if a["WFWorkflowActionIdentifier"].endswith("choosefrommenu")
+                 and a["WFWorkflowActionParameters"].get("WFControlFlowMode") == 0
+                 and any(isinstance(it, dict) and "Idioma / Language" in it["WFValue"]["Value"]["string"]
+                         for it in a["WFWorkflowActionParameters"]["WFMenuItems"])]
+    if len(main_menu) != 1:
+        errors.append("no encontré el menú principal (el que tiene «Idioma / Language»)")
+    else:
+        prompt = main_menu[0]["WFMenuPrompt"]["Value"]
+        if "RSU v" not in prompt["string"] or "Version" not in [a.get("VariableName") for a in prompt["attachmentsByRange"].values()]:
+            errors.append("el menú principal debe decir «RSU v» y la variable Version")
+    aviso = [a["WFWorkflowActionParameters"].get("WFTextActionText") for a in wf["WFWorkflowActions"]
+             if a["WFWorkflowActionParameters"].get("CustomOutputName") == "Aviso por defecto"]
+    if aviso != ["si"]:
+        errors.append("el aviso previo debe estar activado por defecto («Aviso por defecto» = si)")
     if script != (ROOT / "src" / "unsign.py").read_bytes():
         errors.append("el script incrustado no coincide con src/unsign.py (ejecuta build.py)")
     es = json.loads((ROOT / "lang" / "es.json").read_text(encoding="utf-8"))

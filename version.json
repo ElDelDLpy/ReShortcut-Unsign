@@ -1,13 +1,13 @@
 {
-  "version": "0.1.1",
-  "build": 11,
+  "version": "0.1.2",
+  "build": 12,
   "url": "https://www.icloud.com/shortcuts/e7c58a4e3304493bab785a51e03f86f7",
   "notes": {
-    "es": "Avisa si falta a-Shell y abre la App Store; menú de actualización con versión instalada, nueva y notas; Configuración para elegir cada cuánto buscar actualizaciones",
-    "en": "Warns when a-Shell is missing and opens the App Store; update menu with installed version, new version and notes; Settings to choose how often to check for updates"
+    "es": "Aviso antes de buscar actualización (Revisar ahora / Omitir, como DLpy); Configuración ampliada: frecuencia, aviso previo, buscar ahora, verificar a-Shell y restablecer; el menú principal muestra RSU y su versión",
+    "en": "Notice before checking for updates (Check now / Skip, like DLpy); expanded Settings: frequency, notice before checking, check now, verify a-Shell and reset; the main menu shows RSU and its version"
   },
   "lang": {
-    "es": 3,
-    "en": 3
+    "es": 4,
+    "en": 4
   }
 }

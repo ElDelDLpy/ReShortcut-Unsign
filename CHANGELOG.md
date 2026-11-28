@@ -1,5 +1,14 @@
 # Cambios
 
+## 0.1.2 (en pruebas)
+
+- Aviso antes de buscar actualización, como en DLpy: cuando toca revisar (según la frecuencia), el atajo muestra un menú con `RSU vX.Y.Z`, la frecuencia y una nota («Requiere internet. Si falla, se volverá a preguntar la próxima vez que abras el atajo») con dos opciones: 🔄 Revisar ahora o ⏩ Omitir. Con Omitir no se consulta nada y no vuelve a preguntar hasta el siguiente periodo. Con Revisar ahora se consulta `version.json` y, si hay una versión distinta, sale el menú de actualización de siempre.
+- La marca de la última revisión (`ultima_revision.txt`) ahora se guarda **después** de descargar `version.json`: si no hay internet o falla la descarga, no se marca y se vuelve a preguntar la próxima vez que abras el atajo (en 0.1.1 se marcaba antes de consultar). Con el aviso desactivado se mantiene el comportamiento anterior (marca antes de consultar, para no mostrar un error cada vez que abras el atajo sin internet).
+- Configuración reorganizada en dos niveles (⚙️ Configuración, al abrir el atajo sin entrada): ⏱️ Frecuencia (cada día, cada semana, cada mes o solo manual), 🔔 Aviso antes de buscar (activado por defecto; se guarda en `ReShortcutUnsign/aviso.txt` como `si` o `no`), 🔄 Buscar ahora, 🐚 Verificar a-Shell otra vez (borra la respuesta guardada en `ashell.txt` y vuelve a preguntar; antes había que borrar el archivo a mano) y ♻️ Restablecer configuración (frecuencia cada día, aviso activado y a-Shell por verificar; no cambia el idioma, y pide confirmación). El menú de configuración muestra la frecuencia y el aviso actuales.
+- El menú principal ahora dice `RSU vX.Y.Z` (la versión sale de la misma variable que usa la revisión de actualizaciones).
+- Textos nuevos en `lang/` (`menu_check_*`, `cfg_freq`, `cfg_notice`, `cfg_on`, `cfg_off`, `cfg_ashell`, `cfg_reset`, `alert_cfg_ashell_message`, `alert_cfg_reset_*`). Los packs pasan a la revisión 4. Hasta que la revisión baje el inglés nuevo, los textos que falten salen en español.
+- `validate.py` ahora también revisa que cada menú tenga tantos casos como opciones, que ninguna variable se use antes de definirse, que el aviso previo vaya antes de consultar `version.json` (y que Omitir no consulte), que el menú principal diga `RSU v` y la versión y que el aviso esté activado por defecto.
+
 ## 0.1.1 (en pruebas)
 
 - Aviso de a-Shell: antes del modo a-Shell (todo menos enlace de iCloud + solo .shortcut) el atajo pregunta una vez si a-Shell está instalado. Atajos no puede detectar apps instaladas ni capturar el error de una acción de otra app, así que la respuesta se guarda en `ReShortcutUnsign/ashell.txt`. Con «No, instalar» muestra un aviso y, al pulsar OK, abre a-Shell en la App Store y termina; con «Sí» sigue y no vuelve a preguntar. Para volver a preguntar, borra `ashell.txt`.
