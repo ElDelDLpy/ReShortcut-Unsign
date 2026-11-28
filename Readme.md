@@ -2,7 +2,7 @@
 
 Atajo de iOS que quita la firma a un atajo y convierte entre `.shortcut`, JSON y plist (XML).
 
-**Versión:** 0.1.0 (en pruebas)
+**Versión:** 0.1.1 (en pruebas)
 
 ## Entradas
 
@@ -16,7 +16,7 @@ Atajo de iOS que quita la firma a un atajo y convierte entre `.shortcut`, JSON y
 
 ## Actualizaciones
 
-Al terminar, y como máximo una vez al día, consulta `version.json`. Si la `version` es distinta de la instalada y `url` es un enlace de iCloud o el `.shortcut` firmado de este repo en GitHub, ofrece actualizar: un enlace de iCloud se abre directamente; un `.shortcut` de GitHub se descarga y se abre. La fecha se guarda en `Shortcuts/ReShortcutUnsign/ultima_revision.txt`; bórralo para forzar otra revisión.
+Al abrir el atajo, y con la frecuencia que elijas, consulta `version.json`. Abre el atajo sin entrada y elige **⚙️ Configuración** para cambiarla: cada día (por defecto), cada semana, cada mes o solo manual; **🔄 Buscar ahora** fuerza la próxima revisión. La frecuencia se guarda en `Shortcuts/ReShortcutUnsign/frecuencia.txt`. Si la `version` es distinta de la instalada y `url` es un enlace de iCloud o el `.shortcut` firmado de este repo en GitHub, muestra un menú con la versión instalada, la nueva y las notas (en tu idioma) y ofrece ⬇️ Instalar u ⏩ Omitir: un enlace de iCloud se abre directamente; un `.shortcut` de GitHub se descarga y se abre. El periodo de la última revisión se guarda en `Shortcuts/ReShortcutUnsign/ultima_revision.txt`; bórralo para forzar otra revisión.
 
 Antes de publicar en `main`, cambia la acción de texto `Canal` de `dev` a `main`.
 
@@ -33,6 +33,8 @@ Se traducen menús, preguntas y avisos (español e inglés). El selector de idio
 ## Requisitos
 
 [a-Shell](https://holzschu.github.io/a-Shell_iOS/) para procesar archivos. Con un enlace de iCloud y salida *Solo .shortcut* no se usa.
+
+Antes de usar a-Shell, el atajo pregunta una vez si lo tienes instalado (Atajos no puede detectarlo) y lo recuerda en `Shortcuts/ReShortcutUnsign/ashell.txt`. Si contestas que no, avisa y abre a-Shell en la App Store. Borra `ashell.txt` para que vuelva a preguntar.
 
 ## Desarrollo
 

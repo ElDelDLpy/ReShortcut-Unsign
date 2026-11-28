@@ -1,13 +1,13 @@
 {
-  "version": "0.1.0",
-  "build": 10,
+  "version": "0.1.1",
+  "build": 11,
   "url": "https://www.icloud.com/shortcuts/e7c58a4e3304493bab785a51e03f86f7",
   "notes": {
-    "es": "Corrige de nuevo la detección de actualizaciones: compara la versión como texto",
-    "en": "Fixes update detection again: compares the version as text"
+    "es": "Avisa si falta a-Shell y abre la App Store; menú de actualización con versión instalada, nueva y notas; Configuración para elegir cada cuánto buscar actualizaciones",
+    "en": "Warns when a-Shell is missing and opens the App Store; update menu with installed version, new version and notes; Settings to choose how often to check for updates"
   },
   "lang": {
-    "es": 2,
-    "en": 2
+    "es": 3,
+    "en": 3
   }
 }

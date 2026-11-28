@@ -1,5 +1,12 @@
 # Cambios
 
+## 0.1.1 (en pruebas)
+
+- Aviso de a-Shell: antes del modo a-Shell (todo menos enlace de iCloud + solo .shortcut) el atajo pregunta una vez si a-Shell está instalado. Atajos no puede detectar apps instaladas ni capturar el error de una acción de otra app, así que la respuesta se guarda en `ReShortcutUnsign/ashell.txt`. Con «No, instalar» muestra un aviso y, al pulsar OK, abre a-Shell en la App Store y termina; con «Sí» sigue y no vuelve a preguntar. Para volver a preguntar, borra `ashell.txt`.
+- Menú de actualización con el mismo diseño que DLpy: título, `Instalada:`, `Nueva:` y las notas en el idioma elegido, con ⬇️ Instalar y ⏩ Omitir. La revisión ahora salta **al abrir el atajo** (antes era al terminar), antes de procesar la entrada y con la frecuencia configurada (ver abajo); si instalas, el atajo termina para no seguir procesando mientras se actualiza, y si omites continúa normal. Si no hay internet justo cuando toca revisar, Atajos muestra un error esa vez (la marca se guarda antes de consultar) y se reintenta en el siguiente periodo; con ⏸️ Solo manual no ocurre; instalar abre el enlace de iCloud o descarga el `.shortcut` de GitHub como antes. El script va incrustado en el atajo, así que no hay una actualización de script aparte.
+- Configuración: al abrir el atajo sin entrada hay una opción ⚙️ Configuración para elegir cada cuánto se buscan actualizaciones: cada día (por defecto, como hasta ahora), cada semana, cada mes o solo manual. También hay 🔄 Buscar ahora (la búsqueda se hace la próxima vez que abras el atajo). La frecuencia se guarda en `ReShortcutUnsign/frecuencia.txt` y la última revisión en `ultima_revision.txt` (ahora guarda el periodo: `2026-11-28`, `2026-48`, `2026-11` o `manual`).
+- Textos nuevos en `lang/` (`menu_update_installed`, `menu_update_new`, `menu_ashell_*`, `alert_ashell_missing_*`, `menu_source_config`, `cfg_*`, `alert_cfg_*`) y nuevos `menu_update_title`, `menu_update_now`, `menu_update_later`. Los packs pasan a la revisión 3. Hasta que la revisión diaria baje el inglés nuevo, los textos que falten salen en español.
+
 ## 0.1.0 (en pruebas)
 
 - Corrige la condición de actualización que Atajos marcaba como incompleta («Elige un valor para cada parámetro»): la versión remota pasa por una acción de Texto y se compara con la instalada con una coincidencia de texto (`remota|instalada`), el mismo método que la revisión diaria. Si no coinciden, ofrece actualizar; si son iguales, no avisa.
