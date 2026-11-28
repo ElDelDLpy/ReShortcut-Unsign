@@ -75,19 +75,46 @@ def main():
     if stack:
         errors.append("hay bloques sin cerrar")
     errors += [f"menú {g[:8]}: {n} opciones y {c} casos" for g, (n, c) in menus.items() if n != c]
-    main_menu = [a["WFWorkflowActionParameters"] for a in wf["WFWorkflowActions"]
+    menus_all = [a["WFWorkflowActionParameters"] for a in wf["WFWorkflowActions"]
                  if a["WFWorkflowActionIdentifier"].endswith("choosefrommenu")
-                 and a["WFWorkflowActionParameters"].get("WFControlFlowMode") == 0
-                 and any(isinstance(it, dict) and "Idioma / Language" in it["WFValue"]["Value"]["string"]
-                         for it in a["WFWorkflowActionParameters"]["WFMenuItems"])]
+                 and a["WFWorkflowActionParameters"].get("WFControlFlowMode") == 0]
+    def menu_text(p):
+        pr = p.get("WFMenuPrompt")
+        return pr["Value"]["string"] if isinstance(pr, dict) else (pr or "")
+    def menu_items(p):
+        return [it["WFValue"]["Value"]["string"] if isinstance(it, dict) else it for it in p.get("WFMenuItems", [])]
+    main_menu = [p for p in menus_all if menu_text(p).startswith("\U0001f513 RSU v")]
     if len(main_menu) != 1:
-        errors.append("no encontré el menú principal (el que tiene «Idioma / Language»)")
+        errors.append("no encontré el menú principal (el que empieza con «🔓 RSU v»)")
     else:
         prompt = main_menu[0]["WFMenuPrompt"]["Value"]
-        if "RSU v" not in prompt["string"] or "Version" not in [a.get("VariableName") for a in prompt["attachmentsByRange"].values()]:
+        if "Version" not in [a.get("VariableName") for a in prompt["attachmentsByRange"].values()]:
             errors.append("el menú principal debe decir «RSU v» y la variable Version")
+        if any("Idioma / Language" in t for t in menu_items(main_menu[0])):
+            errors.append("Idioma / Language debe estar dentro de Configuración, no en el menú principal")
+    cfg_menus = [p for p in menus_all if any("Idioma / Language" in t for t in menu_items(p)) and p not in main_menu]
+    if len(cfg_menus) != 1 or "\U0001f33f" not in menu_text(cfg_menus[0]) + "".join(menu_items(cfg_menus[0])):
+        errors.append("Configuración debe tener Idioma / Language y Rama")
+    all_text = json.dumps(plistlib.loads((ROOT / "src" / "ReShortcut-Unsign.plist").read_bytes()), ensure_ascii=False, default=str)
+    for a in wf["WFWorkflowActions"]:
+        u = a["WFWorkflowActionParameters"].get("WFURLActionURL")
+        s = u["Value"]["string"] if isinstance(u, dict) else (u or "")
+        if "raw.githubusercontent.com/ElDelDLpy/ReShortcut-Unsign/" in s and "\ufffc/shortcut/" not in s:
+            errors.append("las URL de GitHub del atajo deben ir bajo <rama>/shortcut/")
+    for bad in ("\U0001f41a", "cfg_ashell", "alert_native_title", "alert_ashell_title", "\"Canal\""):
+        if bad in all_text:
+            errors.append(f"sobra {bad!r} en el atajo (0.1.3 lo quita)")
     aviso = [a["WFWorkflowActionParameters"].get("WFTextActionText") for a in wf["WFWorkflowActions"]
              if a["WFWorkflowActionParameters"].get("CustomOutputName") == "Aviso por defecto"]
+    for nombre, esperado in (("Frecuencia por defecto", "semanal"), ("Rama por defecto", "main")):
+        vals = [a["WFWorkflowActionParameters"].get("WFTextActionText") for a in wf["WFWorkflowActions"]
+                if a["WFWorkflowActionParameters"].get("CustomOutputName") == nombre]
+        if vals != [esperado]:
+            errors.append(f"«{nombre}» debe ser {esperado}")
+    saves = [a["WFWorkflowActionParameters"].get("WFFileDestinationPath") for a in wf["WFWorkflowActions"]
+             if a["WFWorkflowActionIdentifier"].endswith("documentpicker.save")]
+    if "ReShortcutUnsign/version.txt" not in saves:
+        errors.append("falta guardar ReShortcutUnsign/version.txt (detección de cambio de versión)")
     if aviso != ["si"]:
         errors.append("el aviso previo debe estar activado por defecto («Aviso por defecto» = si)")
     if script != (ROOT / "src" / "unsign.py").read_bytes():

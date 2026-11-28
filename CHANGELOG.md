@@ -1,8 +1,24 @@
 # Cambios
 
+## 0.1.4 (en pruebas)
+
+- **Todo el atajo en `shortcut/`:** `version.json` y `lang/` pasan a `shortcut/version.json` y `shortcut/lang/`, junto al `.shortcut` firmado. El atajo consulta `<rama>/shortcut/version.json` y `<rama>/shortcut/lang/<código>.json`. Los atajos 0.1.3 o anteriores buscaban en la raíz y ya no encontrarán `version.json`.
+
+## 0.1.3 (en pruebas)
+
+- **Idioma dentro de Configuración:** `🌐 Idioma / Language` sale del menú principal y pasa a ⚙️ Configuración.
+- **Primera ejecución:** el atajo pide el idioma. Si eliges English (que se descarga), muestra antes un aviso en inglés: requiere internet.
+- **Cambio de versión:** el atajo guarda su versión en `ReShortcutUnsign/version.txt`; si la instalada es distinta de la guardada (o no hay archivo), restablece idioma, frecuencia, aviso, rama, a-Shell y última revisión, como si el atajo nunca hubiera existido, y vuelve a pedir el idioma.
+- **Rama:** nueva opción 🌿 Rama de actualizaciones en Configuración (`main` o `dev`, se guarda en `rama.txt`). Reemplaza la acción de texto `Canal`, que estaba fija en `dev`: la revisión de `version.json`, los idiomas y la actualización usan la rama elegida. Por defecto `main`. Al cambiar de rama se fuerza una revisión la próxima vez que abras el atajo.
+- **Frecuencia por defecto:** ahora es semanal (antes diaria). El valor `diaria` sigue disponible.
+- Se quita 🐚 **Verificar a-Shell otra vez** de Configuración (el restablecimiento sigue haciendo que vuelva a preguntar).
+- Se quitan los avisos «Modo a-Shell» y «Modo nativo»; el aviso final ya no menciona el modo.
+- El ícono de a-Shell (🐚) pasa a 💻 (terminal).
+- Textos de menú más claros: «Frecuencia de actualización», «Avisar antes de buscar actualizaciones», «Buscar actualización ahora», «Rama de actualizaciones»; el menú de Configuración ahora muestra frecuencia, aviso y rama con su valor actual (antes mostraba «Buscar actualizaciones» pegado a la frecuencia). Salidas: «Solo .shortcut sin firma», «Todos los formatos».
+- `lang/`: claves nuevas (`cfg_branch*`, `alert_cfg_branch_message`) y se quitan las que ya no se usan (`cfg_title`, `cfg_ashell`, `alert_cfg_ashell_message`, `alert_ashell_*`, `alert_native_*`). Los packs pasan a la revisión 5. Hasta que la revisión baje el inglés nuevo, los textos que falten salen en español.
+
 ## 0.1.2 (en pruebas)
 
-- **Estable en `main`:** el atajo consulta `main/shortcut/version.json` y descarga los idiomas de `main/shortcut/lang/`.
 - Aviso antes de buscar actualización: cuando toca revisar (según la frecuencia), el atajo muestra un menú con `RSU vX.Y.Z`, la frecuencia y una nota («Requiere internet. Si falla, se volverá a preguntar la próxima vez que abras el atajo») con dos opciones: 🔄 Revisar ahora o ⏩ Omitir. Con Omitir no se consulta nada y no vuelve a preguntar hasta el siguiente periodo. Con Revisar ahora se consulta `version.json` y, si hay una versión distinta, sale el menú de actualización de siempre.
 - La marca de la última revisión (`ultima_revision.txt`) ahora se guarda **después** de descargar `version.json`: si no hay internet o falla la descarga, no se marca y se vuelve a preguntar la próxima vez que abras el atajo (en 0.1.1 se marcaba antes de consultar). Con el aviso desactivado se mantiene el comportamiento anterior (marca antes de consultar, para no mostrar un error cada vez que abras el atajo sin internet).
 - Configuración reorganizada en dos niveles (⚙️ Configuración, al abrir el atajo sin entrada): ⏱️ Frecuencia (cada día, cada semana, cada mes o solo manual), 🔔 Aviso antes de buscar (activado por defecto; se guarda en `ReShortcutUnsign/aviso.txt` como `si` o `no`), 🔄 Buscar ahora, 🐚 Verificar a-Shell otra vez (borra la respuesta guardada en `ashell.txt` y vuelve a preguntar; antes había que borrar el archivo a mano) y ♻️ Restablecer configuración (frecuencia cada día, aviso activado y a-Shell por verificar; no cambia el idioma, y pide confirmación). El menú de configuración muestra la frecuencia y el aviso actuales.
